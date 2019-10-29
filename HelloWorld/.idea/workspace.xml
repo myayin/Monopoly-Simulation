@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="e1a07a8c-9b66-48c2-9f28-ec8b425fca64" name="Default Changelist" comment=".">
+=======
+    <list default="true" id="e1a07a8c-9b66-48c2-9f28-ec8b425fca64" name="Default Changelist" comment="">
+>>>>>>> initilazedOfProjectStructure
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +27,14 @@
   <component name="ProjectId" id="1SZGRiQnJ2FXTvx7WIpKYlECb3S" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MonopolyGame" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="GitLabConfigurableProvider" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -62,15 +72,33 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571763697672</updated>
-      <workItem from="1571763704249" duration="62000" />
+      <workItem from="1571763704249" duration="931000" />
+      <workItem from="1571847018417" duration="36000" />
+      <workItem from="1572338234534" duration="2352000" />
+      <workItem from="1572341683985" duration="867000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
     <option name="LAST_COMMIT_MESSAGE" value="." />
+=======
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+>>>>>>> initilazedOfProjectStructure
   </component>
 </project>
