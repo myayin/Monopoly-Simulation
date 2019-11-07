@@ -8,10 +8,10 @@ public class SimulatedPlayer {
     private Piece piece;
     private String playerName;
 
-    public SimulatedPlayer(String playerName, Piece.Color color, int balance) {
+    public SimulatedPlayer(String playerName, int balance) {
         this.playerName = playerName;
         this.balance = balance;
-        this.piece = new Piece(color);
+        this.piece = new Piece();
     }
 
     public int getBalance() {

@@ -18,7 +18,6 @@ public class MonopolyGame {
     private int turnCounter;
     private int cycleCounter; // TODO: analyse
 
-
     public MonopolyGame(Arguments arguments) {
         int taxSquareCount = arguments.getInteger("taxSquareCount");
         int totalSquareCount = arguments.getInteger("totalSquareCount");
@@ -39,7 +38,7 @@ public class MonopolyGame {
 
         this.players = new SimulatedPlayer[playerNames.length];
         for (int i = 0; i < playerNames.length; i++) {
-            this.players[i] = new SimulatedPlayer(playerNames[i], Piece.Color.randomOne(), startingBalance);
+            this.players[i] = new SimulatedPlayer(playerNames[i], startingBalance);
         }
 
         this.gameBoard = new BoardBuilder(this)
