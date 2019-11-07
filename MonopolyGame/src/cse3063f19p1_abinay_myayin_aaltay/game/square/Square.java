@@ -1,6 +1,7 @@
-package square;
+package cse3063f19p1_abinay_myayin_aaltay.game.square;
 
-import player.SimulatedPlayer;
+
+import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
 
 public abstract class Square {
 
@@ -9,6 +10,10 @@ public abstract class Square {
 
     public Square(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public abstract void performLanding(SimulatedPlayer player);

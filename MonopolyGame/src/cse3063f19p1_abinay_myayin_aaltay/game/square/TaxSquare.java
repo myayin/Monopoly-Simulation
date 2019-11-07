@@ -1,6 +1,7 @@
-package square;
+package cse3063f19p1_abinay_myayin_aaltay.game.square;
 
-import player.SimulatedPlayer;
+
+import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
 
 public class TaxSquare extends Square {
 

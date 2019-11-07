@@ -1,4 +1,6 @@
-package entity;
+package cse3063f19p1_abinay_myayin_aaltay.game.entity;
+
+import java.util.Random;
 
 public class Piece {
 
@@ -9,6 +11,11 @@ public class Piece {
         BLUE("Blue", 0xFF_0000FF),
         BLACK("Black", 0xFF_000000),
         CYAN("Cyan", 0xFF_00FFFF);
+
+        public static Color randomOne() {
+            int randIndex = new Random().nextInt(values().length);
+            return values()[randIndex];
+        }
 
         private String name;
         private int hexColor;

@@ -1,6 +1,6 @@
-package player;
+package cse3063f19p1_abinay_myayin_aaltay.game.player;
 
-import entity.Piece;
+import cse3063f19p1_abinay_myayin_aaltay.game.entity.Piece;
 
 public class SimulatedPlayer {
 
@@ -34,4 +34,10 @@ public class SimulatedPlayer {
         return piece;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s ($%d%s)",
+                playerName, balance,
+                isBankrupt() ? "- Bankrupt" : "");
+    }
 }
