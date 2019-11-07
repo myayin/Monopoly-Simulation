@@ -1,4 +1,4 @@
-package tr.edu.marun.anilaltay;
+package cse3063f19p1_abinay_myayin_aaltay;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
@@ -23,7 +23,7 @@ public class Main {
     }
 
     private static String getConfigPath(String relativePath) {
-        String configFolderPath = System.getProperty("user.dir") + File.separator + "config";
+        String configFolderPath = System.getProperty("user.dir") +File.separator +"MonopolyGame"+ File.separator + "config";
         return configFolderPath + File.separator + relativePath;
     }
 

@@ -2,7 +2,6 @@ package cse3063f19p1_abinay_myayin_aaltay.game.entity;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
 import cse3063f19p1_abinay_myayin_aaltay.game.PrintHelper;
-import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
 
 import java.util.List;

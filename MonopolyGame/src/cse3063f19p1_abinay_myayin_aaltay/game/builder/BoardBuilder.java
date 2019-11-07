@@ -4,7 +4,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Dice;
-import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
+import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.GoSquare;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.TaxSquare;

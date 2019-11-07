@@ -4,7 +4,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.builder.BoardBuilder;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Dice;
-import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
+import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 
 import java.util.*;
 import java.util.stream.Stream;
