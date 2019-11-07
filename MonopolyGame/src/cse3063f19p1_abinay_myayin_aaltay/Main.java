@@ -1,6 +1,9 @@
 package cse3063f19p1_abinay_myayin_aaltay;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
+import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
+
+import java.io.File;
 
 public class Main {
 
@@ -10,13 +13,18 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            Arguments arguments = new Arguments(args);
-            new MonopolyGame(arguments).start();
+            MonopolyConfig monopolyConfig = new MonopolyConfig(getConfigFile("monopoly.properties"));
+            new MonopolyGame(monopolyConfig).start();
 
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Monopoly Simulation disturbed by an expection. Terminating...");
         }
+    }
+
+    private static File getConfigFile(String relativePath) {
+        String configFolderPath = System.getProperty("user.dir") + File.separator + "config";
+        return new File(configFolderPath + File.separator + relativePath);
     }
 
 }

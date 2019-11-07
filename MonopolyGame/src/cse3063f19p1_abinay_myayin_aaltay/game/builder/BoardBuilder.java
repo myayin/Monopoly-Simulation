@@ -1,6 +1,7 @@
 package cse3063f19p1_abinay_myayin_aaltay.game.builder;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
+import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Dice;
 import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
@@ -14,19 +15,15 @@ import java.util.List;
 
 public class BoardBuilder {
 
+    public static final int COUNT_TOTAL_SQUARE = 40;
+    public static final int COUNT_TOTAL_DICE = 2;
+
     private MonopolyGame game;
-    private int totalSquareSize;
     private int taxSquareSize;
-    private int diceCount;
-    private int taxPayment, salary;
+    private int taxPayment, goSalary;
 
     public BoardBuilder(MonopolyGame game) {
         this.game = game;
-    }
-
-    public BoardBuilder setTotalSquareSize(int totalSquareSize) {
-        this.totalSquareSize = totalSquareSize;
-        return this;
     }
 
     public BoardBuilder setTaxSquareSize(int taxSquareSize) {
@@ -34,13 +31,8 @@ public class BoardBuilder {
         return this;
     }
 
-    public BoardBuilder setDiceCount(int diceCount) {
-        this.diceCount = diceCount;
-        return this;
-    }
-
-    public BoardBuilder setSalary(int salary) {
-        this.salary = salary;
+    public BoardBuilder setGoSalary(int goSalary) {
+        this.goSalary = goSalary;
         return this;
     }
 
@@ -49,10 +41,18 @@ public class BoardBuilder {
         return this;
     }
 
+    public BoardBuilder withConfig(MonopolyConfig config) {
+        setTaxSquareSize(config.getTaxSquareCount());
+        setGoSalary(config.getGoSalary());
+        setTaxPayment(config.getTaxPayment());
+
+        return this;
+    }
+
     public Board build() {
         Board board = new Board();
 
-        // Attach Monopoly cse3063f19p1_abinay_myayin_aaltay.game instance
+        // Attach Monopoly game instance
         board.attachParentGame(this.game);
 
         // Build squares
@@ -61,7 +61,7 @@ public class BoardBuilder {
             TaxSquare taxSquare = new TaxSquare(taxPayment);
             squares.add(taxSquare);
         }
-        while (squares.size() < totalSquareSize - 1) {
+        while (squares.size() < COUNT_TOTAL_SQUARE - 1) {
             Square square = new Square("Dummy Square") { // TODO: random square
                 @Override
                 public void performLanding(SimulatedPlayer player) {}
@@ -69,7 +69,7 @@ public class BoardBuilder {
             squares.add(square);
         }
         Collections.shuffle(squares);
-        squares.add(0, new GoSquare(salary));
+        squares.add(0, new GoSquare(goSalary));
         board.initSquares(squares);
 
         // Debug
@@ -78,7 +78,7 @@ public class BoardBuilder {
 //        }
 
         // Build dices
-        Dice[] dices = new Dice[diceCount];
+        Dice[] dices = new Dice[COUNT_TOTAL_DICE];
         for (int i = 0; i < dices.length; i++) {
             dices[i] = new Dice();
         }

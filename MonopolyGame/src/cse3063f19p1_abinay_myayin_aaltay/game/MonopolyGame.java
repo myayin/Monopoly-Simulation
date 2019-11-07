@@ -1,9 +1,8 @@
 package cse3063f19p1_abinay_myayin_aaltay.game;
 
-import cse3063f19p1_abinay_myayin_aaltay.Arguments;
 import cse3063f19p1_abinay_myayin_aaltay.game.builder.BoardBuilder;
+import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
-import cse3063f19p1_abinay_myayin_aaltay.game.entity.Piece;
 import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
 
 import java.util.stream.Stream;
@@ -18,36 +17,17 @@ public class MonopolyGame {
     private int turnCounter;
     private int cycleCounter; // TODO: analyse
 
-    public MonopolyGame(Arguments arguments) {
-        int taxSquareCount = arguments.getInteger("taxSquareCount");
-        int totalSquareCount = arguments.getInteger("totalSquareCount");
-        String[] playerNames = arguments.getStrings("players");
-        int startingBalance = arguments.getInteger("startingBalance");
+    public MonopolyGame(MonopolyConfig config) {
+        String[] playersName = config.getPlayers();
 
-        if (taxSquareCount <= 0)
-            throw new IllegalArgumentException("taxSquareCount expected to be > 0");
-
-        if (totalSquareCount <= 0)
-            throw new IllegalArgumentException("totalSquareCount expected to be > 0");
-
-        if (playerNames == null || playerNames.length < 2 || playerNames.length > 8)
-            throw new IllegalArgumentException("players argument should be an array with at least 2, at most 8 players names.");
-
-        if (startingBalance <= 0)
-            throw new IllegalArgumentException("startingBalance expected to be > 0");
-
-        this.players = new SimulatedPlayer[playerNames.length];
-        for (int i = 0; i < playerNames.length; i++) {
-            this.players[i] = new SimulatedPlayer(playerNames[i], startingBalance);
+        this.players = new SimulatedPlayer[playersName.length];
+        for (int i = 0; i < playersName.length; i++) {
+            this.players[i] = new SimulatedPlayer(
+                    playersName[i],
+                    config.getStartingBalance());
         }
 
-        this.gameBoard = new BoardBuilder(this)
-                .setTotalSquareSize(totalSquareCount)
-                .setTaxSquareSize(taxSquareCount)
-                .setDiceCount(2)
-                .setSalary(200)
-                .setTaxPayment(100)
-                .build();
+        this.gameBoard = new BoardBuilder(this).withConfig(config).build();
     }
 
     private void nextTurn() {
