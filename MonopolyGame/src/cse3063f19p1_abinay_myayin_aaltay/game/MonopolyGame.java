@@ -48,7 +48,7 @@ public class MonopolyGame {
 
         for (String playerName : playerNames) {
             Dice[] dices = gameBoard.rollDices();
-            int diceTotal = Stream.of(dices).mapToInt(Dice::getValue).sum();
+            int diceTotal = Stream.of(dices).mapToInt(Dice::getFacingValue).sum();
 
             PrintHelper.printRoll(playerName, dices);
 

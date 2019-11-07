@@ -4,28 +4,28 @@ import java.util.Random;
 
 public class Dice {
 
-    private Random rng;
-    private int value;
-    private int previousValue;
+    private Random randomNumberGenerator;
+    private int facingValue;
+    private int previousFacingValue;
 
     public Dice() {
-        this.rng = new Random();
-        this.value = -1;
+        this.randomNumberGenerator = new Random();
+        this.facingValue = -1;
     }
 
     public int roll() {
-        int roll = rng.nextInt(6) + 1;
-        previousValue = value;
-        value = roll;
+        int roll = randomNumberGenerator.nextInt(6) + 1;
+        previousFacingValue = facingValue;
+        facingValue = roll;
         return roll;
     }
 
-    public int getValue() {
-        return value;
+    public int getFacingValue() {
+        return facingValue;
     }
 
-    public int getPreviousValue() {
-        return previousValue;
+    public int getPreviousFacingValue() {
+        return previousFacingValue;
     }
 
 }

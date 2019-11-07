@@ -30,13 +30,13 @@ public class PrintHelper {
     }
 
     public static void printRoll(String playerName, Dice[] dices) {
-        int diceTotal = Stream.of(dices).mapToInt(Dice::getValue).sum();
+        int diceTotal = Stream.of(dices).mapToInt(Dice::getFacingValue).sum();
 
         System.out.print(playerName + " rolled [");
         String delimiter = "";
         for (Dice dice : dices) {
             System.out.print(delimiter);
-            System.out.print(dice.getValue());
+            System.out.print(dice.getFacingValue());
             delimiter = " ";
         }
         System.out.println("] into total " + diceTotal);

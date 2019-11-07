@@ -52,7 +52,7 @@ public class Board {
         rollDices();
 
         boolean allSame = false; // TODO
-        int diceTotal = Stream.of(dices).mapToInt(Dice::getValue).sum();
+        int diceTotal = Stream.of(dices).mapToInt(Dice::getFacingValue).sum();
 
         // Print rolled dices
         PrintHelper.printRoll(player.getPlayerName(), dices);
