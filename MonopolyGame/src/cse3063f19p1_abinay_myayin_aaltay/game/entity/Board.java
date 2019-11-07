@@ -1,6 +1,7 @@
 package cse3063f19p1_abinay_myayin_aaltay.game.entity;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
+import cse3063f19p1_abinay_myayin_aaltay.game.PrintHelper;
 import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
 
@@ -49,20 +50,13 @@ public class Board {
             return 0;
         }
 
-        for (Dice dice : dices) dice.roll();
+        rollDices();
 
         boolean allSame = false; // TODO
         int diceTotal = Stream.of(dices).mapToInt(Dice::getValue).sum();
 
         // Print rolled dices
-        System.out.print(player.toString() + " rolled [");
-        String delimiter = "";
-        for (Dice dice : dices) {
-            System.out.print(delimiter);
-            System.out.print(dice.getValue());
-            delimiter = " ";
-        }
-        System.out.println("] into total " + diceTotal);
+        PrintHelper.printRoll(player.getPlayerName(), dices);
 
         Piece piece = player.getPiece();
         while (diceTotal > 0) {
@@ -90,6 +84,11 @@ public class Board {
         }
 
         return -1; // TODO: return moved square count
+    }
+
+    public Dice[] rollDices() {
+        for (Dice dice : dices) dice.roll();
+        return dices;
     }
 
 }
