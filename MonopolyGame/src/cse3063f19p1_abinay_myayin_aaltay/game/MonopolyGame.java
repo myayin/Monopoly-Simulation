@@ -13,8 +13,10 @@ public class MonopolyGame {
     private int currentPlayerIndex;
     private Board gameBoard;
 
+    private boolean running;
+
     // TODO: Extract possible speed values into a distinct class: Speed POJO
-    private double pieceMoveSpeed;
+    private double sleepAfterTurn;
 
     // TODO: Extract those statistical values into a distinct class: GameStats || PlayerStats
     private int turnCounter;
@@ -30,13 +32,13 @@ public class MonopolyGame {
                     config.getStartingBalance());
         }
 
-        this.pieceMoveSpeed = config.getPieceMoveSpeed();
+        this.sleepAfterTurn = config.getSleepAfterTurn();
 
         this.gameBoard = new BoardBuilder(this).withConfig(config).build();
     }
 
-    public double getPieceMoveSpeed() {
-        return pieceMoveSpeed;
+    public boolean isRunning() {
+        return running;
     }
 
     private void nextTurn() {
@@ -55,21 +57,26 @@ public class MonopolyGame {
     }
 
     public void start() {
-        while (true) {
-            SimulatedPlayer currentPlayer = getCurrentPlayer();
+        running = true;
 
-            System.out.println("Turn #" + turnCounter);
-            gameBoard.performTurn(currentPlayer);
+        while (running) gameLoop();
+    }
 
-            sleep(0.5f);
+    private void gameLoop() {
+        SimulatedPlayer currentPlayer = getCurrentPlayer();
 
-            if (players.length - countOfBankrupts() == 1) {
-                onGameOver();
-                break;
-            }
+        System.out.println("Turn #" + turnCounter);
+        gameBoard.performTurn(currentPlayer);
 
-            nextTurn();
+        sleep(sleepAfterTurn);
+
+        if (players.length - countOfBankrupts() == 1) {
+            onGameOver();
+            stop();
+            return;
         }
+
+        nextTurn();
     }
 
     private void onGameOver() {
@@ -77,8 +84,14 @@ public class MonopolyGame {
         System.out.println("Game over. Winner is: TODO");
     }
 
+    /* ----------------------------- */
+
     public void sleep(double seconds) {
         try { Thread.sleep((long) (seconds * 1000L)); } catch (InterruptedException ignored) {}
+    }
+
+    public void stop() {
+        running = false;
     }
 
 }

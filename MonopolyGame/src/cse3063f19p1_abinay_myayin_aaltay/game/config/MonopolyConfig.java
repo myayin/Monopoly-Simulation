@@ -8,8 +8,10 @@ public class MonopolyConfig {
     private int taxSquareCount;
     private int startingBalance;
     private int goSalary, taxPayment;
-    private double pieceMoveSpeed;
     private String[] players;
+
+    private double sleepAfterTurn;
+    private double sleepAfterPieceMove;
 
     /**
      * Extract configurations from given config file
@@ -39,13 +41,17 @@ public class MonopolyConfig {
         if (taxPayment <= 0)
             throw new IllegalArgumentException("taxPayment expected to be > 0");
 
-        pieceMoveSpeed = getValue(properties, "pieceMoveSpeed", Double.class);
-        if (pieceMoveSpeed <= 0)
-            throw new IllegalArgumentException("pieceMoveSpeed expected to be > 0");
-
         players = getValue(properties, "players", String[].class);
         if (!(2 <= players.length && players.length <= 8))
             throw new IllegalArgumentException("Length of players should be in range [2,8]");
+
+        sleepAfterTurn = getValue(properties, "sleepAfterTurn", Double.class);
+        if (sleepAfterTurn < 0)
+            throw new IllegalArgumentException("sleepAfterTurn expected to be >= 0");
+
+        sleepAfterPieceMove = getValue(properties, "sleepAfterPieceMove", Double.class);
+        if (sleepAfterPieceMove < 0)
+            throw new IllegalArgumentException("sleepAfterPieceMove expected to be >= 0");
     }
 
     private <T> T getValue(Properties properties, String key, Class<T> type) {
@@ -104,12 +110,16 @@ public class MonopolyConfig {
         return taxPayment;
     }
 
-    public double getPieceMoveSpeed() {
-        return pieceMoveSpeed;
-    }
-
     public String[] getPlayers() {
         return players;
+    }
+
+    public double getSleepAfterTurn() {
+        return sleepAfterTurn;
+    }
+
+    public double getSleepAfterPieceMove() {
+        return sleepAfterPieceMove;
     }
 
 }

@@ -13,6 +13,8 @@ public class Board {
     private List<Square> squares;
     private Dice[] dices;
 
+    private double sleepAfterPieceMove;
+
     public void attachParentGame(MonopolyGame game) {
         if (this.parentGame != null)
             throw new IllegalStateException("Parent game is already attached!");
@@ -32,6 +34,10 @@ public class Board {
             throw new IllegalStateException("Dices are already initialized!");
 
         this.dices = dices;
+    }
+
+    public void initSleepParameters(double afterPieceMove) {
+        this.sleepAfterPieceMove = afterPieceMove;
     }
 
     /* ------------------------------ */
@@ -60,7 +66,7 @@ public class Board {
 
         Piece piece = player.getPiece();
         while (diceTotal > 0) {
-            parentGame.sleep(parentGame.getPieceMoveSpeed());
+            parentGame.sleep(sleepAfterPieceMove);
             System.out.printf("(%d) ", diceTotal);
             int prevLocation = piece.getCurrentLocation();
             int nextLocation = (prevLocation + 1) % squares.size();

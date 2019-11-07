@@ -21,6 +21,7 @@ public class BoardBuilder {
     private MonopolyGame game;
     private int taxSquareSize;
     private int taxPayment, goSalary;
+    private double sleepAfterPieceMove;
 
     public BoardBuilder(MonopolyGame game) {
         this.game = game;
@@ -41,10 +42,15 @@ public class BoardBuilder {
         return this;
     }
 
+    public void setSleepAfterPieceMove(double sleepAfterPieceMove) {
+        this.sleepAfterPieceMove = sleepAfterPieceMove;
+    }
+
     public BoardBuilder withConfig(MonopolyConfig config) {
         setTaxSquareSize(config.getTaxSquareCount());
         setGoSalary(config.getGoSalary());
         setTaxPayment(config.getTaxPayment());
+        setSleepAfterPieceMove(config.getSleepAfterPieceMove());
 
         return this;
     }
@@ -72,17 +78,15 @@ public class BoardBuilder {
         squares.add(0, new GoSquare(goSalary));
         board.initSquares(squares);
 
-        // Debug
-//        for (int i = 0; i < squares.size(); i++) {
-//            System.out.printf("Square #%d: %s\n", i + 1, squares.get(i).getName());
-//        }
-
         // Build dices
         Dice[] dices = new Dice[COUNT_TOTAL_DICE];
         for (int i = 0; i < dices.length; i++) {
             dices[i] = new Dice();
         }
         board.initDices(dices);
+
+        // Misc. attributes
+        board.initSleepParameters(sleepAfterPieceMove);
 
         // Finally return the built board
         return board;
