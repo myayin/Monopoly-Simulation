@@ -1,11 +1,9 @@
-package cse3063f19p1_abinay_myayin_aaltay;
+package tr.edu.marun.anilaltay;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 
-
 import java.io.File;
-import java.nio.file.Paths;
 
 public class Main {
 
@@ -15,18 +13,18 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            MonopolyConfig monopolyConfig = new MonopolyConfig(getConfigFile("monopoly.properties"));
+            MonopolyConfig monopolyConfig = MonopolyConfig.readFrom(getConfigPath("monopoly.json"));
             new MonopolyGame(monopolyConfig).start();
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("Monopoly Simulation disturbed by an expection. Terminating...");
+            System.out.println("Monopoly Simulation disturbed by an exception. Terminating...");
         }
     }
 
-    private static File getConfigFile(String relativePath) {
-        String configFolderPath = System.getProperty("user.dir")+ File.separator + "MonopolyGame" + File.separator + "config";
-        return new File(configFolderPath + File.separator + relativePath);
+    private static String getConfigPath(String relativePath) {
+        String configFolderPath = System.getProperty("user.dir") + File.separator + "config";
+        return configFolderPath + File.separator + relativePath;
     }
 
 }
