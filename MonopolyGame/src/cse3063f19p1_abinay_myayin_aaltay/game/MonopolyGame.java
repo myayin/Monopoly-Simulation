@@ -13,7 +13,10 @@ public class MonopolyGame {
     private int currentPlayerIndex;
     private Board gameBoard;
 
-    // TODO: Extract those statistical values to a distinct class: GameStats || PlayerStats
+    // TODO: Extract possible speed values into a distinct class: Speed POJO
+    private double pieceMoveSpeed;
+
+    // TODO: Extract those statistical values into a distinct class: GameStats || PlayerStats
     private int turnCounter;
     private int cycleCounter; // TODO: analyse
 
@@ -27,7 +30,13 @@ public class MonopolyGame {
                     config.getStartingBalance());
         }
 
+        this.pieceMoveSpeed = config.getPieceMoveSpeed();
+
         this.gameBoard = new BoardBuilder(this).withConfig(config).build();
+    }
+
+    public double getPieceMoveSpeed() {
+        return pieceMoveSpeed;
     }
 
     private void nextTurn() {
@@ -68,7 +77,7 @@ public class MonopolyGame {
         System.out.println("Game over. Winner is: TODO");
     }
 
-    public void sleep(float seconds) {
+    public void sleep(double seconds) {
         try { Thread.sleep((long) (seconds * 1000L)); } catch (InterruptedException ignored) {}
     }
 

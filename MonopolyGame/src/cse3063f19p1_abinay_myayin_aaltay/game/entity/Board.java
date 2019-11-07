@@ -1,6 +1,5 @@
 package cse3063f19p1_abinay_myayin_aaltay.game.entity;
 
-
 import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
 import cse3063f19p1_abinay_myayin_aaltay.game.player.SimulatedPlayer;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
@@ -16,7 +15,7 @@ public class Board {
 
     public void attachParentGame(MonopolyGame game) {
         if (this.parentGame != null)
-            throw new IllegalStateException("Parent cse3063f19p1_abinay_myayin_aaltay.game is already attached!");
+            throw new IllegalStateException("Parent game is already attached!");
 
         this.parentGame = game;
     }
@@ -61,7 +60,7 @@ public class Board {
 
         Piece piece = player.getPiece();
         while (diceTotal > 0) {
-            parentGame.sleep(0.25f);
+            parentGame.sleep(parentGame.getPieceMoveSpeed());
             System.out.printf("(%d) ", diceTotal);
             int prevLocation = piece.getCurrentLocation();
             int nextLocation = (prevLocation + 1) % squares.size();
