@@ -1,7 +1,5 @@
 package cse3063f19p1_abinay_myayin_aaltay.game.entity;
 
-import cse3063f19p1_abinay_myayin_aaltay.game.entity.Piece;
-
 public class SimulatedPlayer {
 
     private int balance;
@@ -40,4 +38,5 @@ public class SimulatedPlayer {
                 playerName, balance,
                 isBankrupt() ? "- Bankrupt" : "");
     }
+
 }

@@ -55,7 +55,7 @@ public class Board {
         int diceTotal = Stream.of(dices).mapToInt(Dice::getFacingValue).sum();
 
         // Print rolled dices
-        PrintHelper.printRoll(player.getPlayerName(), dices);
+        PrintHelper.printRoll(player, dices);
 
         Piece piece = player.getPiece();
         while (diceTotal > 0) {

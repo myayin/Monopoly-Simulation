@@ -1,6 +1,7 @@
 package cse3063f19p1_abinay_myayin_aaltay.game;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Dice;
+import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 
 import java.util.stream.Stream;
 
@@ -33,6 +34,19 @@ public class PrintHelper {
         int diceTotal = Stream.of(dices).mapToInt(Dice::getFacingValue).sum();
 
         System.out.print(playerName + " rolled [");
+        String delimiter = "";
+        for (Dice dice : dices) {
+            System.out.print(delimiter);
+            System.out.print(dice.getFacingValue());
+            delimiter = " ";
+        }
+        System.out.println("] into total " + diceTotal);
+    }
+
+    public static void printRoll(SimulatedPlayer player, Dice[] dices) {
+        int diceTotal = Stream.of(dices).mapToInt(Dice::getFacingValue).sum();
+
+        System.out.print(player + " rolled [");
         String delimiter = "";
         for (Dice dice : dices) {
             System.out.print(delimiter);

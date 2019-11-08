@@ -101,6 +101,8 @@ public class MonopolyGame {
         return players[currentPlayerIndex];
     }
 
+    /* ----------------------------- */
+
     public void start() {
         running = true;
 
@@ -121,19 +123,31 @@ public class MonopolyGame {
             return;
         }
 
-        onTurnIncrement();
+        onTurnEnding();
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+        System.out.println();
     }
 
-    private void onTurnIncrement() {
-        System.out.println();
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    /* ----------------------------- */
+
+    private void onTurnEnding() {
+        System.out.println(getCurrentPlayer().getPlayerName() + " has " + getCurrentPlayer().getBalance() + "$");
 
         turnCounter++;
 
         if (turnCounter == players.length) {
             turnCounter = 0;
             cycleCounter++;
+            onCycleEnding();
         }
+    }
+
+    private void onCycleEnding() {
+        PrintHelper.printSeperator();
+        for (SimulatedPlayer player : players) {
+            System.out.println(player + " has " + player.getBalance() + "$");
+        }
+        PrintHelper.printSeperator();
     }
 
     private void onGameOver() {

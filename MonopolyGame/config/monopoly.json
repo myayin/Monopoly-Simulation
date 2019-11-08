@@ -4,10 +4,10 @@
   "goSalary": 200,
   "taxPayment": 100,
   "players": [
-    "Anil",
-    "Ayten",
-    "Merve",
-    "Murat"
+    "iGoodie",
+    "Pomapii",
+    "Neetaa",
+    "Diavali"
   ],
   "sleepAfterTurn": 0.5,
   "sleepAfterPieceMove": 0.25
