@@ -12,9 +12,33 @@ public class SimulatedPlayer {
     private String playerName;
     private List<LotSquare> lotSquare = new ArrayList<LotSquare>();
     private int[] numOfProperties = new int[6];
+
     public List<LotSquare> getLotSquare() {
         return lotSquare;
     }
+
+    private boolean inJail = false;
+    private boolean inWaiting = false;
+
+    public boolean isInWaiting() {
+        return inWaiting;
+    }
+
+    public void setInWaiting(boolean inWaiting) {
+        this.inWaiting = inWaiting;
+    }
+
+    public int doublenessCounter = 0;
+
+
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
+    }
+
+    public boolean isInJail() {
+        return inJail;
+    }
+
 
     public void setLotSquare(List<LotSquare> lotSquare) {
         this.lotSquare = lotSquare;
