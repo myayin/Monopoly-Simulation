@@ -23,6 +23,7 @@ public  class LotSquare extends Square {
     private int buildPriceHotel;
     private  int mortgage;
     private int cancelMortgage;
+    private int rentPrice;
 
 
     public LotSquare(String propertyName, int color, int buyingPrice, int incomeLand, int incomeSetLand, int income1,
@@ -31,6 +32,7 @@ public  class LotSquare extends Square {
 
         this.propertyName = propertyName;
         this.color=color;
+        this.rentPrice=incomeLand;
         this.buyingPrice=buyingPrice;
         this.incomeLand = incomeLand;
         this.incomeSetLand=incomeSetLand;
@@ -43,6 +45,7 @@ public  class LotSquare extends Square {
         this.buildPriceHotel = buildPriceHotel;
         this.mortgage = mortgage;
         this.cancelMortgage=cancelMortgage;
+
     }
 
 

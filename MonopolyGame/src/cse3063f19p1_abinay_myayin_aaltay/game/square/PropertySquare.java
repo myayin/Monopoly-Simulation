@@ -21,5 +21,8 @@ public class PropertySquare extends Square {
     public void performLanding(SimulatedPlayer player) {
 
     }
+    public void payRent(int rentPrice, SimulatedPlayer player){
+        player.setBalance(player.getBalance() - rentPrice);
+    }
 
 }
