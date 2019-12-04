@@ -11,6 +11,7 @@ public class SimulatedPlayer {
     private Piece piece;
     private String playerName;
     private List<LotSquare> lotSquare = new ArrayList<LotSquare>();
+    private int[] numOfProperties = new int[6];
     public List<LotSquare> getLotSquare() {
         return lotSquare;
     }
