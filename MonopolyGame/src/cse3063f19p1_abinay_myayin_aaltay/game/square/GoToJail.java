@@ -11,6 +11,6 @@ public class GoToJail extends Square{
     @Override
     public void performLanding(SimulatedPlayer player) {
         player.setInJail(true);
-        player.getPiece().setCurrentLocation(Jail.JailSquareNumber);
+
     }
 }

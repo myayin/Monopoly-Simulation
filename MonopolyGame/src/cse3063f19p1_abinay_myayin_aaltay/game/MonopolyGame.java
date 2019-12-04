@@ -5,6 +5,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Dice;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
+import cse3063f19p1_abinay_myayin_aaltay.game.square.Jail;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -115,6 +116,7 @@ public class MonopolyGame {
         System.out.printf("Cycle:%d Turn:%d\n", cycleCounter + 1, turnCounter + 1);
         gameBoard.performTurn(currentPlayer);
 
+
         sleep(sleepAfterTurn);
 
         if (players.length - countOfBankrupts() == 1) {
@@ -126,6 +128,7 @@ public class MonopolyGame {
         onTurnEnding();
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
         System.out.println();
+
     }
 
     /* ----------------------------- */
@@ -139,6 +142,9 @@ public class MonopolyGame {
             turnCounter = 0;
             cycleCounter++;
             onCycleEnding();
+            if(getCurrentPlayer().doublenessCounter == 3){
+                goToJail(getCurrentPlayer());
+            }
         }
     }
 
@@ -163,6 +169,10 @@ public class MonopolyGame {
 
     public void stop() {
         running = false;
+    }
+    public void goToJail(SimulatedPlayer player){
+        player.setInJail(true);
+        player.getPiece().setCurrentLocation(Jail.JailSquareNumber);
     }
 
 }
