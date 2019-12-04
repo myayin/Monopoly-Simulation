@@ -15,7 +15,6 @@ import java.util.List;
 public class BoardBuilder {
 
     public static final int COUNT_TOTAL_SQUARE = 40;
-    public static final int COUNT_TOTAL_PROPERTY_SQUARE = 22;
     public static final int COUNT_TOTAL_DICE = 2;
 
     private MonopolyGame game;
@@ -92,7 +91,16 @@ public class BoardBuilder {
         squares.add(21,new LotSquare("Bostancı", 4,220,18,36,90,250,700,875,1050,150,150,110,121));
         squares.add(23,new LotSquare("Erenköy",4,220,18,36,90,250,700,875,1050,150,150,110,121));
         squares.add(24,new LotSquare("Caddebostan",4,240,20,40,100,300,750,925,1100,150,150,120,132));
-         board.initSquares(squares);
+        squares.add(26,new LotSquare("Nişantaşı",5 , 260, 22,44,110,330,800,975,1150,150,150,130,143));
+        squares.add(27,new LotSquare("Teşvikiye",5 , 260, 22,44,110,330,800,975,1150,150,150,130,143));
+        squares.add(29,new LotSquare("Maçka",5 , 280, 24,48,120,360,850,1025,1200,150,150,140,154));
+        squares.add(31,new LotSquare("Levent", 6, 300, 26,52,130,390,900,1100,1275,200,200,150,165));
+        squares.add(32,new LotSquare("Etiler", 6, 300, 26,52,130,390,900,1100,1275,200,200,150,165));
+        squares.add(34,new LotSquare("Bebek", 6, 320, 28,56,150,450,1000,1200,1400,200,200,160,176));
+        squares.add(38,new LotSquare("Tarabya", 7, 350, 35,70,175,500,1100,1300,1500,200,200,175,193));
+        squares.add(39,new LotSquare("Yeniköy", 7, 400, 50,100,200,600,1400,1700,2000,200,200,200,220));
+        board.initSquares(squares);
+
 
         // Build dices
         Dice[] dices = new Dice[COUNT_TOTAL_DICE];
