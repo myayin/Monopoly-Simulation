@@ -6,9 +6,12 @@ public class Jail extends Square{
     //It is false, player is just visiting. True when player in jail
 
     public static int JailSquareNumber=10;
-    public  static int  jailPayment=50;
-    public Jail(String name) {
-        super(name);
+    public  static int  jailPayment;
+    public Jail(int jailPayment) {
+        super("Square");
+        this.jailPayment=jailPayment;
+
+
     }
 
     @Override

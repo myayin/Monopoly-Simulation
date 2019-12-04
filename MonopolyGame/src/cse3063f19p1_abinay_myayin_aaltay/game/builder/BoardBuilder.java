@@ -4,10 +4,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Dice;
-import cse3063f19p1_abinay_myayin_aaltay.game.square.GoSquare;
-import cse3063f19p1_abinay_myayin_aaltay.game.square.LotSquare;
-import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
-import cse3063f19p1_abinay_myayin_aaltay.game.square.TaxSquare;
+import cse3063f19p1_abinay_myayin_aaltay.game.square.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -82,6 +79,7 @@ public class BoardBuilder {
         squares.add(6, new LotSquare("Sultanahmet", 1,100,6,12,30,90,270,400,550,50,50,50,55));
         squares.add(8,new LotSquare("Karaköy",1,100,6,12,30,90,270,400,550,50,50,50,55));
         squares.add(9,new LotSquare("Sirkeci",1,120,8,16,40,100,300,450,600,50,50,60,66));
+        squares.add(10,new Jail(50));
         squares.add(11,new LotSquare("Beyoğlu",2,140,10,20,50,150,450,625,750,100,100,70,77));
         squares.add(13,new LotSquare("Beşiktaş",2,140,10,20,50,150,450,625,750,100,100,70,70));
         squares.add(14,new LotSquare("Taksim",2,160,12,24,60,180,500,700,900,100,100,80,88));
@@ -94,6 +92,7 @@ public class BoardBuilder {
         squares.add(26,new LotSquare("Nişantaşı",5 , 260, 22,44,110,330,800,975,1150,150,150,130,143));
         squares.add(27,new LotSquare("Teşvikiye",5 , 260, 22,44,110,330,800,975,1150,150,150,130,143));
         squares.add(29,new LotSquare("Maçka",5 , 280, 24,48,120,360,850,1025,1200,150,150,140,154));
+        squares.add(30,new GoToJail());
         squares.add(31,new LotSquare("Levent", 6, 300, 26,52,130,390,900,1100,1275,200,200,150,165));
         squares.add(32,new LotSquare("Etiler", 6, 300, 26,52,130,390,900,1100,1275,200,200,150,165));
         squares.add(34,new LotSquare("Bebek", 6, 320, 28,56,150,450,1000,1200,1400,200,200,160,176));
