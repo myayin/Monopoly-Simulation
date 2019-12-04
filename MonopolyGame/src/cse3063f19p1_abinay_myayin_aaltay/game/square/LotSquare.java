@@ -110,9 +110,6 @@ public  class LotSquare extends Square {
             case 7:
                 if (player.getLotSquare().get(7).color == 3)
                     return true;
-            case 8:
-                if (player.getLotSquare().get(8).color == 2)
-                    return true;
 
         }
         return false;
