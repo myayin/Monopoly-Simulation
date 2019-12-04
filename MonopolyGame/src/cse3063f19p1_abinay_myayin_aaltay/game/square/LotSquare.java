@@ -51,29 +51,76 @@ public  class LotSquare extends Square {
 
     @Override
     public void performLanding(SimulatedPlayer player) {
-        if (!isOwned) {
+        if (!isOwned) { // sahipsizse
             if (player.getBalance() / 2 > buyingPrice) {
-            buyProperty(player); }
-        }
-         else
-            if (owner == player) {
-            if(hasUserAllSameColor(player))
-            if (numOfHouse < 5) {
-                buildHome(player);
-
+                buyProperty(player);
             }
+        } else if (owner == player) { //sahibi player ise
+            if (hasUserAllSameColor(player)) {
+                buildHome(player);
+            }
+            if (hasUserAllSameColor(player) && canBuildHotel(player))
+                buildHotel(player);
 
-
+        } else { //sahibi var ancak player değil
+            PropertySquare.payRent(this.rentPrice, player);
         }
     }
 
+    public boolean canBuildHotel(SimulatedPlayer player) {
+        int count = 0;
+        for (int i = 0; i < player.getLotSquare().size(); i++) {
+
+            if (player.getLotSquare().get(i).color == color) {
+                if (numOfHouse == 4) {
+                    count++;
+                }
+                if (numOfHotel != 0) return true; //oteli varsa zaten 4er evi vardır
+            }
+        }
+
+        if ((color == 0 || color == 7) && count == 2)
+            return true;
+
+        if ((color != 0 && color != 7) && count == 3)
+            return true;
+
+        return false;
+    }
+
+
+    public void buildHotel(SimulatedPlayer player) {
+        numOfHouse = 0;
+        if (player.getBalance() / 3 > buildPriceHotel) {
+            numOfHotel = 1;
+            player.setBalance(player.getBalance() - buildPriceHotel);
+        }
+
+    }
+
     public void buildHome(SimulatedPlayer player) {
-        int numberOfHouseCanBuild = 4 - numOfHouse;
-        int numberOfHousesBuild = (int) ((player.getBalance() / 3) / buildPriceHome);
-        if (numberOfHouseCanBuild > numberOfHousesBuild) {
+        int numberOfHousesBuild = 4 - numOfHouse;
+        int numberOfHousesCanBuild = (int) ((player.getBalance() / 3) / buildPriceHome);
+        if (numberOfHousesCanBuild > numberOfHousesBuild) {
             numOfHouse = 4;
             player.setBalance(player.getBalance() - numberOfHousesBuild * buildPriceHome);
+            this.rentPrice = income4;
         } else {
+            numOfHouse += (int) numberOfHousesCanBuild;
+            player.setBalance(player.getBalance() - numberOfHousesCanBuild * buildPriceHome);
+            switch (numOfHouse) {
+                case 0:
+                    this.rentPrice = rentPrice;
+                case 1:
+                    this.rentPrice = income1;
+                case 2:
+                    this.rentPrice = income2;
+                case 3:
+                    this.rentPrice = income3;
+                case 4:
+                    this.rentPrice = income4;
+
+            }
 
         }
     }
@@ -86,8 +133,9 @@ public  class LotSquare extends Square {
              isOwned = true;
 
 
-     }
-    public boolean hasUserAllSameColor (SimulatedPlayer player) {
+    }
+
+    public boolean hasUserAllSameColor(SimulatedPlayer player) {
         switch (color) {
             case 0:
                 if (player.getLotSquare().get(0).color == 2)
