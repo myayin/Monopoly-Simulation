@@ -134,32 +134,53 @@ public  class LotSquare extends Square {
 
 
     }
+    public void arrangeNumOfProp(SimulatedPlayer player){
+        switch(color){
+            case 0:
+                player.getNumOfProperties()[0]++;
+            case 1:
+                player.getNumOfProperties()[1]++;
+            case 2:
+                player.getNumOfProperties()[2]++;
+            case 3:
+                player.getNumOfProperties()[3]++;
+            case 4:
+                player.getNumOfProperties()[4]++;
+            case 5:
+                player.getNumOfProperties()[5]++;
+            case 6:
+                player.getNumOfProperties()[6]++;
+            case 7:
+                player.getNumOfProperties()[7]++;
+        }
+    }
 
     public boolean hasUserAllSameColor(SimulatedPlayer player) {
+
         switch (color) {
             case 0:
-                if (player.getLotSquare().get(0).color == 2)
+                if (player.getNumOfProperties()[0] == 2)
                     return true;
             case 1:
-                if (player.getLotSquare().get(1).color == 3)
+                if (player.getNumOfProperties()[1] == 3)
                     return true;
             case 2:
-                if (player.getLotSquare().get(2).color == 3)
+                if (player.getNumOfProperties()[2] == 3)
                     return true;
             case 3:
-                if (player.getLotSquare().get(3).color == 3)
+                if (player.getNumOfProperties()[3] == 3)
                     return true;
             case 4:
-                if (player.getLotSquare().get(4).color == 3)
+                if (player.getNumOfProperties()[4] == 3)
                     return true;
             case 5:
-                if (player.getLotSquare().get(5).color == 3)
+                if (player.getNumOfProperties()[5] == 3)
                     return true;
             case 6:
-                if (player.getLotSquare().get(6).color == 3)
+                if (player.getNumOfProperties()[6]== 3)
                     return true;
             case 7:
-                if (player.getLotSquare().get(7).color == 3)
+                if (player.getNumOfProperties()[7] == 2)
                     return true;
 
         }
