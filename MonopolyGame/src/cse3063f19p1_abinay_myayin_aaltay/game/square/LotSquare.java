@@ -2,7 +2,7 @@ package cse3063f19p1_abinay_myayin_aaltay.game.square;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 
-public  class LotSquare extends Square {
+public class LotSquare extends Square {
     //TODO
 
     private String propertyName;
@@ -13,7 +13,7 @@ public  class LotSquare extends Square {
     private int numOfHotel = 0;
     private int buyingPrice;
     private int incomeLand;
-    private  int incomeSetLand;
+    private int incomeSetLand;
     private int income1;
     private int income2;
     private int income3;
@@ -21,7 +21,7 @@ public  class LotSquare extends Square {
     private int incomeHotel;
     private int buildPriceHome;
     private int buildPriceHotel;
-    private  int mortgage;
+    private int mortgage;
     private int cancelMortgage;
     private int rentPrice;
 
@@ -31,11 +31,10 @@ public  class LotSquare extends Square {
         super("PropertySquare");
 
         this.propertyName = propertyName;
-        this.color=color;
-        this.rentPrice=incomeLand;
-        this.buyingPrice=buyingPrice;
+        this.color = color;
+        this.buyingPrice = buyingPrice;
         this.incomeLand = incomeLand;
-        this.incomeSetLand=incomeSetLand;
+        this.incomeSetLand = incomeSetLand;
         this.income1 = income1;
         this.income2 = income2;
         this.income3 = income3;
@@ -44,8 +43,7 @@ public  class LotSquare extends Square {
         this.buildPriceHome = buildPriceHome;
         this.buildPriceHotel = buildPriceHotel;
         this.mortgage = mortgage;
-        this.cancelMortgage=cancelMortgage;
-
+        this.cancelMortgage = cancelMortgage;
     }
 
 
@@ -125,13 +123,17 @@ public  class LotSquare extends Square {
         }
     }
 
-     public void buyProperty(SimulatedPlayer player) {
-
-             int currentBalance = player.getBalance();
-             player.setBalance(currentBalance - buyingPrice);
-             owner = player;
-             isOwned = true;
-
+    public void buyProperty(SimulatedPlayer player) {
+        int currentBalance = player.getBalance();
+        player.setBalance(currentBalance - buyingPrice);
+        player.addProperty(this);
+        arrangeNumOfProp(player);
+        owner = player;
+        isOwned = true;
+        if (hasUserAllSameColor(player))
+            this.rentPrice = incomeSetLand;
+        else
+            this.rentPrice = incomeLand;
 
     }
     public void arrangeNumOfProp(SimulatedPlayer player){
