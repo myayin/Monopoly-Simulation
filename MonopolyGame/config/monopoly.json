@@ -1,6 +1,6 @@
 {
   "taxSquareCount": 5,
-  "startingBalance": 2000,
+  "startingBalance": 100000,
   "goSalary": 200,
   "taxPayment": 100,
   "players": [

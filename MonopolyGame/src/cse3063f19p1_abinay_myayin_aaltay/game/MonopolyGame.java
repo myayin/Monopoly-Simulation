@@ -4,7 +4,6 @@ import cse3063f19p1_abinay_myayin_aaltay.game.builder.BoardBuilder;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.*;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.JailSquare;
-import cse3063f19p1_abinay_myayin_aaltay.game.square.LotSquare;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
 
 import java.util.*;
@@ -21,7 +20,6 @@ public class MonopolyGame {
 
     // TODO: Extract possible speed values into a distinct class: Speed POJO
     private double sleepAfterTurn;
-    private double sleepAfterPieceMove;
 
     // TODO: Extract those statistical values into a distinct class: GameStats || PlayerStats
     private int turnCounter;
@@ -33,7 +31,6 @@ public class MonopolyGame {
 
         this.cup = new Cup();
         this.sleepAfterTurn = config.getSleepAfterTurn();
-        this.sleepAfterPieceMove = config.getSleepAfterPieceMove();
 
         this.gameBoard = new BoardBuilder(this).withConfig(config).build();
 
@@ -192,9 +189,10 @@ public class MonopolyGame {
     public boolean performJailedTurn(SimulatedPlayer player) {
         final JailSquare jailSquare = gameBoard.getJailSquare();
 
-        if (jailSquare.jailedDuration(player) < 3) {
-            if (jailSquare.getJailPenalty() <= player.getBalance() / 2) {
+        if (jailSquare.getJailedDuration(player) < 3) {
+            if (jailSquare.getJailPenalty() <= player.getBalance() / 2) { //TODO: extract to player
                 player.setBalance(player.getBalance() - jailSquare.getJailPenalty());
+                player.pay(jailSquare.getJailPenalty());
                 System.out.println(player.getPlayerName() + " paid " + jailSquare.getJailPenalty() + "$ penalty.");
                 return true;
 
@@ -216,19 +214,9 @@ public class MonopolyGame {
         }
 
         //TODO: extract to player.
-        List<LotSquare> propertiesToSell = new ArrayList<>();
-        int total = 0;
-        player.lotSquare.sort((lot1, lot2) -> -Integer.compare(lot1.getSellingPrice(), lot2.getSellingPrice()));
-        for (LotSquare lotSquare : player.lotSquare) {
-            total += lotSquare.getSellingPrice();
-            propertiesToSell.add(lotSquare);
-            if (total >= jailSquare.getJailPenalty()) break;
-        }
-        for (LotSquare lotSquare : propertiesToSell) {
-            lotSquare.setOwner(null);
-        }
-        player.lotSquare.removeAll(propertiesToSell);
-        System.out.println(player.getPlayerName() + " sold " + propertiesToSell.size() + " lots for " + total + "$ and payed the penalty.");
+        player.pay(jailSquare.getJailPenalty(),null);
+        System.out.println(player.getPlayerName() + " sold their properties to get out of the Jail!");
+
         return false;
     }
 

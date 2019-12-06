@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Board {
 
-    private MonopolyGame parentGame;
     private List<Square> squares;
 
     public void initSquares(List<Square> squares) {

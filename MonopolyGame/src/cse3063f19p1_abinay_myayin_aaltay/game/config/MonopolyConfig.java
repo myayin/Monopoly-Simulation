@@ -27,7 +27,10 @@ public class MonopolyConfig extends BaseConfig {
     private double sleepAfterTurn;
 
     @Expose
-    private double sleepAfterPieceMove;
+    private int utilitySquareCount;
+
+    @Expose
+    private int vehicleSquareCount;
 
     public MonopolyConfig(String path) {
         super(path);
@@ -56,9 +59,10 @@ public class MonopolyConfig extends BaseConfig {
         startingBalance = 2000;
         goSalary = 200;
         taxPayment = 100;
-        players = new String[]{"iGoodie", "Pomapii", "Neetaa", "Diavali"};
+        players = new String[]{"Anıl", "Ayten", "Merve", "Murat"};
         sleepAfterTurn = 0.5;
-        sleepAfterPieceMove = 0.25;
+        utilitySquareCount = 2;
+        vehicleSquareCount = 3;
     }
 
     public int getTaxSquareCount() {
@@ -85,8 +89,11 @@ public class MonopolyConfig extends BaseConfig {
         return sleepAfterTurn;
     }
 
-    public double getSleepAfterPieceMove() {
-        return sleepAfterPieceMove;
+    public int getUtilitySquareCount() {
+        return utilitySquareCount;
     }
 
+    public int getVehicleSquareCount() {
+        return vehicleSquareCount;
+    }
 }

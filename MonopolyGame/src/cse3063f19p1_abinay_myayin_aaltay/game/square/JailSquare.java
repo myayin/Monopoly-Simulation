@@ -45,7 +45,7 @@ public class JailSquare extends Square {
         return jailedPlayers.keySet().contains(player);
     }
 
-    public int jailedDuration(SimulatedPlayer player) {
+    public int getJailedDuration(SimulatedPlayer player) {
         return jailedPlayers.get(player);
     }
 

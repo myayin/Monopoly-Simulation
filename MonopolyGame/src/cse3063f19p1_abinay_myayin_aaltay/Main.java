@@ -7,13 +7,15 @@ import java.io.File;
 
 public class Main {
 
+    public static MonopolyConfig monopolyConfig;
     /**
      * Parses given arguments and starts Monopoly Simulation.
      * Expected argument format:"-key:value"
      */
+
     public static void main(String[] args) {
         try {
-            MonopolyConfig monopolyConfig = MonopolyConfig.readFrom(getConfigPath("monopoly.json"));
+            monopolyConfig = MonopolyConfig.readFrom(getConfigPath("monopoly.json"));
             new MonopolyGame(monopolyConfig).start();
 
         } catch (Exception e) {
