@@ -9,8 +9,8 @@ public abstract class PropertySquare extends Square {
 
     public PropertySquare(int location, String name, int buyingPrice, int sellingPrice) {
         super(location, name);
-        this.buyingPrice = 0;
-        this.sellingPrice = 0;
+        this.buyingPrice = buyingPrice;
+        this.sellingPrice = sellingPrice;
         this.owner = null;
     }
 
