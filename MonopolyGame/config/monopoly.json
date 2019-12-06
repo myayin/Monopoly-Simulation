@@ -1,0 +1,15 @@
+{
+  "taxSquareCount": 5,
+  "startingBalance": 200000,
+  "goSalary": 200,
+  "taxPayment": 100,
+  "players": [
+    "Anıl",
+    "Ayten",
+    "Merve",
+    "Murat"
+  ],
+  "sleepAfterTurn": 0.5,
+  "utilitySquareCount": 2,
+  "vehicleSquareCount": 3
+}
