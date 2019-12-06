@@ -7,7 +7,7 @@ public class GoSquare extends Square {
     private int salary;
 
     public GoSquare(int salary) {
-        super("Go Square");
+        super(0,"Go Square");
         this.salary = salary;
     }
 
@@ -17,15 +17,10 @@ public class GoSquare extends Square {
 
     @Override
     public void performLanding(SimulatedPlayer player) {
-        payPlayer(player);
+        paySalary(player);
     }
 
-    @Override
-    public void performPassing(SimulatedPlayer player) {
-        payPlayer(player);
-    }
-
-    private void payPlayer(SimulatedPlayer player) {
+    public void paySalary(SimulatedPlayer player) {
         int currentBalance = player.getBalance();
         player.setBalance(currentBalance + salary);
     }

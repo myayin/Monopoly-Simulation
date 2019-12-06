@@ -2,10 +2,10 @@ package cse3063f19p1_abinay_myayin_aaltay.game;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.builder.BoardBuilder;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
-import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
-import cse3063f19p1_abinay_myayin_aaltay.game.entity.Dice;
-import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
-import cse3063f19p1_abinay_myayin_aaltay.game.square.Jail;
+import cse3063f19p1_abinay_myayin_aaltay.game.entity.*;
+import cse3063f19p1_abinay_myayin_aaltay.game.square.JailSquare;
+import cse3063f19p1_abinay_myayin_aaltay.game.square.LotSquare;
+import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -15,20 +15,25 @@ public class MonopolyGame {
     private SimulatedPlayer[] players;
     private int currentPlayerIndex;
     private Board gameBoard;
+    private Cup cup;
 
     private boolean running;
 
     // TODO: Extract possible speed values into a distinct class: Speed POJO
     private double sleepAfterTurn;
+    private double sleepAfterPieceMove;
 
     // TODO: Extract those statistical values into a distinct class: GameStats || PlayerStats
     private int turnCounter;
     private int cycleCounter; // TODO: analyse
 
     public MonopolyGame(MonopolyConfig config) {
+
         PrintHelper.printSimulationOpener();
 
+        this.cup = new Cup();
         this.sleepAfterTurn = config.getSleepAfterTurn();
+        this.sleepAfterPieceMove = config.getSleepAfterPieceMove();
 
         this.gameBoard = new BoardBuilder(this).withConfig(config).build();
 
@@ -40,7 +45,7 @@ public class MonopolyGame {
         PrintHelper.printSeperator();
 
         this.players = playerNames.stream()
-                .map(playerName -> new SimulatedPlayer(playerName, config.getStartingBalance()))
+                .map(playerName -> new SimulatedPlayer(playerName, config.getStartingBalance(), gameBoard))
                 .toArray(SimulatedPlayer[]::new);
     }
 
@@ -48,10 +53,10 @@ public class MonopolyGame {
         Map<String, Integer> rolls = new HashMap<>();
 
         for (String playerName : playerNames) {
-            Dice[] dices = gameBoard.rollDices();
-            int diceTotal = Stream.of(dices).mapToInt(Dice::getFacingValue).sum();
+            cup.rollDices();
+            int diceTotal = cup.getTotal();
 
-            PrintHelper.printRoll(playerName, dices);
+            PrintHelper.printRoll(playerName, cup.getDices());
 
             rolls.put(playerName, diceTotal);
         }
@@ -65,7 +70,7 @@ public class MonopolyGame {
 
         PrintHelper.printSeperator();
 
-        // Resolve roll conflictions
+        // Resolve roll conflicts
         for (int i = 0; i < playerNames.size(); i++) {
             String playerName = playerNames.get(i);
 
@@ -114,7 +119,7 @@ public class MonopolyGame {
         SimulatedPlayer currentPlayer = getCurrentPlayer();
 
         System.out.printf("Cycle:%d Turn:%d\n", cycleCounter + 1, turnCounter + 1);
-        gameBoard.performTurn(currentPlayer);
+        performTurn(currentPlayer);
 
 
         sleep(sleepAfterTurn);
@@ -133,19 +138,102 @@ public class MonopolyGame {
 
     /* ----------------------------- */
 
-    private void onTurnEnding() {
-        System.out.println(getCurrentPlayer().getPlayerName() + " has " + getCurrentPlayer().getBalance() + "$");
+    public void performTurn(SimulatedPlayer player) {
 
-        turnCounter++;
+        if (player.isBankrupt()) {
+            // TODO: sell mechanism
+            System.out.printf("%s is bankrupted. Turn is ended.\n", player);
+            return;
+        }
 
-        if (turnCounter == players.length) {
-            turnCounter = 0;
-            cycleCounter++;
-            onCycleEnding();
-            if(getCurrentPlayer().doublenessCounter == 3){
-                goToJail(getCurrentPlayer());
+        int turnsPerformed = 0;
+
+        do {
+            cup.rollDices();
+            int diceTotal = cup.getTotal();
+
+            if (gameBoard.getJailSquare().isJailed(player)) {
+
+                boolean pardonedPlayer = performJailedTurn(player);
+                if (!pardonedPlayer) return;
+                gameBoard.getJailSquare().pardonPlayer(player);
+                System.out.println(player.getPlayerName() + " got out of jail!");
+
+            }
+
+            PrintHelper.printRoll(player, cup.getDices());
+
+            Square previousSquare = gameBoard.getSquare(player.getPiece().getCurrentLocation());
+            Square nextSquare = gameBoard.getSquare(player.getPiece().getCurrentLocation(), diceTotal);
+
+            if (nextSquare.getLocation() < previousSquare.getLocation())
+                gameBoard.getGoSquare().paySalary(player);
+
+            System.out.printf("%s is moving from [%d] %s to [%d] %s.\n",
+                    player.getPlayerName(),
+                    previousSquare.getLocation(), previousSquare.getName(),
+                    nextSquare.getLocation(), nextSquare.getName());
+
+            player.getPiece().setCurrentLocation(nextSquare.getLocation());
+
+            nextSquare.performLanding(player);
+
+            turnsPerformed++;
+
+        } while (cup.dicesEqual() && turnsPerformed < 3);
+
+        if (turnsPerformed >= 3) {
+            System.out.println(player.getPlayerName() + " rolled even dices three times. Going to jail!");
+            gameBoard.getJailSquare().jailPlayer(player);
+        }
+
+    }
+
+    public boolean performJailedTurn(SimulatedPlayer player) {
+        final JailSquare jailSquare = gameBoard.getJailSquare();
+
+        if (jailSquare.jailedDuration(player) < 3) {
+            if (jailSquare.getJailPenalty() <= player.getBalance() / 2) {
+                player.setBalance(player.getBalance() - jailSquare.getJailPenalty());
+                System.out.println(player.getPlayerName() + " paid " + jailSquare.getJailPenalty() + "$ penalty.");
+                return true;
+
+            } else if (cup.dicesEqual()) {
+                System.out.println(player.getPlayerName() + " rolled double.");
+                return true;
+
+            } else {
+                jailSquare.increaseJailedDuration(player);
+                System.out.println(player.getPlayerName() + " failed to roll double.");
+                return false;
             }
         }
+
+        if (jailSquare.getJailPenalty() <= player.getBalance()) {
+            player.setBalance(player.getBalance() - jailSquare.getJailPenalty());
+            System.out.println(player.getPlayerName() + " paid " + jailSquare.getJailPenalty() + "$ penalty.");
+            return true;
+        }
+
+        //TODO: extract to player.
+        List<LotSquare> propertiesToSell = new ArrayList<>();
+        int total = 0;
+        player.lotSquare.sort((lot1, lot2) -> -Integer.compare(lot1.getSellingPrice(), lot2.getSellingPrice()));
+        for (LotSquare lotSquare : player.lotSquare) {
+            total += lotSquare.getSellingPrice();
+            propertiesToSell.add(lotSquare);
+            if (total >= jailSquare.getJailPenalty()) break;
+        }
+        for (LotSquare lotSquare : propertiesToSell) {
+            lotSquare.setOwner(null);
+        }
+        player.lotSquare.removeAll(propertiesToSell);
+        System.out.println(player.getPlayerName() + " sold " + propertiesToSell.size() + " lots for " + total + "$ and payed the penalty.");
+        return false;
+    }
+
+    private void onTurnEnding() {
+        System.out.println(getCurrentPlayer().getPlayerName() + " has " + getCurrentPlayer().getBalance() + "$");
     }
 
     private void onCycleEnding() {
@@ -164,15 +252,15 @@ public class MonopolyGame {
     /* ----------------------------- */
 
     public void sleep(double seconds) {
-        try { Thread.sleep((long) (seconds * 1000L)); } catch (InterruptedException ignored) {}
+        try {
+            Thread.sleep((long) (seconds * 1000L));
+        } catch (InterruptedException ignored) {
+        }
     }
 
     public void stop() {
         running = false;
     }
-    public void goToJail(SimulatedPlayer player){
-        player.setInJail(true);
-        player.getPiece().setCurrentLocation(Jail.JailSquareNumber);
-    }
+
 
 }

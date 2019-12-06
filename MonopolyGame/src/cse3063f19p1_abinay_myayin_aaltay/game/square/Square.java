@@ -5,11 +5,14 @@ import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 public abstract class Square {
 
     private String name;
-//    private String type;
+    private int location;
 
-    public Square(String name) {
+    public Square(int location, String name) {
+        this.location = location;
         this.name = name;
     }
+
+    public int getLocation() {return location;}
 
     public String getName() {
         return name;
@@ -17,6 +20,5 @@ public abstract class Square {
 
     public abstract void performLanding(SimulatedPlayer player);
 
-    public void performPassing(SimulatedPlayer player) {}
 
 }

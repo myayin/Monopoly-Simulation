@@ -6,8 +6,8 @@ public class TaxSquare extends Square {
 
     private int payment;
 
-    public TaxSquare(int payment) {
-        super("Tax Square");
+    public TaxSquare(int location, int payment) {
+        super(location,"Tax Square");
         this.payment = payment;
     }
 

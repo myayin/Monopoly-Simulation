@@ -1,0 +1,14 @@
+{
+  "taxSquareCount": 5,
+  "startingBalance": 2000,
+  "goSalary": 200,
+  "taxPayment": 100,
+  "players": [
+    "Anil",
+    "Ayten",
+    "Merve",
+    "Murat"
+  ],
+  "sleepAfterTurn": 0.5,
+  "sleepAfterPieceMove": 0.25
+}

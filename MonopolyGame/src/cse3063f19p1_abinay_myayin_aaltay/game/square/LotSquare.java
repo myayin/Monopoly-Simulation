@@ -2,7 +2,8 @@ package cse3063f19p1_abinay_myayin_aaltay.game.square;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 
-public  class LotSquare extends Square {
+//TODO: rewrite the whole class.
+public class LotSquare extends Square {
     //TODO
 
     private String propertyName;
@@ -26,9 +27,9 @@ public  class LotSquare extends Square {
     private int rentPrice;
 
 
-    public LotSquare(String propertyName, int color, int buyingPrice, int incomeLand, int incomeSetLand, int income1,
+    public LotSquare(int location,String propertyName, int color, int buyingPrice, int incomeLand, int incomeSetLand, int income1,
                      int income2, int income3, int income4, int incomeHotel, int buildPriceHome, int buildPriceHotel, int mortgage, int cancelMortgage) {
-        super("PropertySquare");
+        super(location,"PropertySquare");
 
         this.propertyName = propertyName;
         this.color=color;
@@ -187,5 +188,16 @@ public  class LotSquare extends Square {
         return false;
     }
 
+    public int getSellingPrice(){ //TODO
+        return buyingPrice*2;
+    }
+
+    public SimulatedPlayer getOwner() {
+        return owner;
+    }
+
+    public void setOwner(SimulatedPlayer owner) {
+        this.owner = owner;
+    }
 }
 

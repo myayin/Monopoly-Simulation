@@ -10,14 +10,10 @@ public class SimulatedPlayer {
     private int balance;
     private Piece piece;
     private String playerName;
-    private List<LotSquare> lotSquare = new ArrayList<LotSquare>();
+    public List<LotSquare> lotSquare = new ArrayList<LotSquare>(); //TODO: make private after extraction.
 
     public int[] getNumOfProperties() {
         return numOfProperties;
-    }
-
-    public void setNumOfProperties(int[] numOfProperties) {
-        this.numOfProperties = numOfProperties;
     }
 
     private int[] numOfProperties = new int[8];
@@ -26,38 +22,10 @@ public class SimulatedPlayer {
         return lotSquare;
     }
 
-    private boolean inJail = false;
-    private boolean inWaiting = false;
-
-    public boolean isInWaiting() {
-        return inWaiting;
-    }
-
-    public void setInWaiting(boolean inWaiting) {
-        this.inWaiting = inWaiting;
-    }
-
-    public int doublenessCounter = 0;
-
-
-    public void setInJail(boolean inJail) {
-        this.inJail = inJail;
-    }
-
-    public boolean isInJail() {
-        return inJail;
-    }
-
-
-    public void setLotSquare(List<LotSquare> lotSquare) {
-        this.lotSquare = lotSquare;
-    }
-
-
-    public SimulatedPlayer(String playerName, int balance) {
+    public SimulatedPlayer(String playerName, int balance, Board board) {
         this.playerName = playerName;
         this.balance = balance;
-        this.piece = new Piece();
+        this.piece = new Piece(board);
     }
 
     public int getBalance() {
@@ -79,7 +47,6 @@ public class SimulatedPlayer {
     public Piece getPiece() {
         return piece;
     }
-
 
     public void addProperty(LotSquare lotSquare) {
         this.lotSquare.add(lotSquare);
