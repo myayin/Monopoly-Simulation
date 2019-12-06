@@ -202,9 +202,9 @@ public class BoardBuilder {
 
         for (int i = 0; i < utilitySquareSize; i++) {
             int location = emptyLocations.remove(rnd.nextInt(emptyLocations.size()));
-
+            System.out.println(lotNames.size());
             UtilitySquare utilitySquare = new UtilitySquare(location,
-                    utilityNames.remove(rnd.nextInt(lotNames.size())),
+                    utilityNames.remove(rnd.nextInt(utilityNames.size())),
                     10_000,8_000); //TODO: refactor constant assignment
 
             squares.set(location, utilitySquare);
@@ -217,7 +217,7 @@ public class BoardBuilder {
             int location = emptyLocations.remove(rnd.nextInt(emptyLocations.size()));
 
             VehicleSquare vehicleSquare = new VehicleSquare(location,
-                    vehicleNames.remove(rnd.nextInt(lotNames.size())),
+                    vehicleNames.remove(rnd.nextInt(vehicleNames.size())),
                     10_000,8_000,1000); //TODO: refactor constant assignment
 
             squares.set(location, vehicleSquare);
