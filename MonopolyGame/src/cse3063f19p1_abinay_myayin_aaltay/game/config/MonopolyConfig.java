@@ -56,7 +56,7 @@ public class MonopolyConfig extends BaseConfig {
         System.out.println("Unexpected MonopolyConfig format. Resetting config ...");
 
         taxSquareCount = 5;
-        startingBalance = 2000;
+        startingBalance = 200_000;
         goSalary = 200;
         taxPayment = 100;
         players = new String[]{"Anıl", "Ayten", "Merve", "Murat"};
