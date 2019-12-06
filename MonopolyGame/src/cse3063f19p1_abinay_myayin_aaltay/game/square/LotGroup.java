@@ -21,7 +21,7 @@ public class LotGroup {
     }
 
     public boolean ownedBy(SimulatedPlayer player) {
-        return lotList.stream().allMatch(lot -> lot.owner.equals(player));
+        return lotList.stream().allMatch(lot -> lot.owner != null && lot.owner.equals(player));
     }
 
 }
