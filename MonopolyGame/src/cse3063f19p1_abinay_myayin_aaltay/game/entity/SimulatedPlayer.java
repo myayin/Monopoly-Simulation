@@ -54,10 +54,10 @@ public class SimulatedPlayer {
     }
 
     public void buyProperty(PropertySquare propertySquare) {
-        if (this.getBalance() > propertySquare.getBuyingPrice()) {
+        // if (this.getBalance() >= propertySquare.getBuyingPrice()) {
             this.setBalance(this.getBalance() - propertySquare.getBuyingPrice());
             ownedProperties.add(propertySquare);
-        } else throw new IllegalArgumentException(""); //TODO: decide exception string.
+       // } else throw new IllegalArgumentException(""); //TODO: decide exception string.
     }
 
     public void sellProperty(PropertySquare propertySquare) {

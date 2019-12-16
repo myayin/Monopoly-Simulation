@@ -46,10 +46,12 @@ public abstract class PropertySquare extends Square {
             if(player.getBalance() >= this.getBuyingPrice()/2){
                 player.buyProperty(this);
                 this.setOwner(player);
+                System.out.println(player.getPlayerName()+" bought "+this.getName()+" property for "+this.getBuyingPrice()+"$");
             }
         }
         else{
             payRent(player);
+            System.out.println(player.getPlayerName()+" paid "+this.getRent()+"$ rent to "+getOwner().getPlayerName());
         }
     }
 

@@ -183,7 +183,6 @@ public class MonopolyGame {
             System.out.println(player.getPlayerName() + " rolled even dices three times. Going to jail!");
             gameBoard.getJailSquare().jailPlayer(player);
         }
-
     }
 
     public boolean performJailedTurn(SimulatedPlayer player) {
@@ -221,7 +220,14 @@ public class MonopolyGame {
     }
 
     private void onTurnEnding() {
-        System.out.println(getCurrentPlayer().getPlayerName() + " has " + getCurrentPlayer().getBalance() + "$");
+      ///  System.out.println(getCurrentPlayer().getPlayerName() + " has " + getCurrentPlayer().getBalance() + "$");
+        turnCounter++;
+
+        if (turnCounter == players.length) {
+            turnCounter = 0;
+            cycleCounter++;
+            onCycleEnding();
+        }
     }
 
     private void onCycleEnding() {

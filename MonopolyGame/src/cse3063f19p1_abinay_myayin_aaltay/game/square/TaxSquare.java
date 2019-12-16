@@ -17,8 +17,10 @@ public class TaxSquare extends Square {
 
     @Override
     public void performLanding(SimulatedPlayer player) {
-        int currentBalance = player.getBalance();
-        player.setBalance(currentBalance - payment);
+        //int currentBalance = player.getBalance();
+        //player.setBalance(currentBalance - payment);
+        player.pay(payment,player);
+        System.out.println(player.getPlayerName()+" paid "+payment+"$ Tax.");
     }
 
 }
