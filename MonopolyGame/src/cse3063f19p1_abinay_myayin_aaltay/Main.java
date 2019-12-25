@@ -7,11 +7,10 @@ import java.io.File;
 
 public class Main {
 
-    public static MonopolyConfig monopolyConfig;
     /**
-     * Parses given arguments and starts Monopoly Simulation.
-     * Expected argument format:"-key:value"
+     * Holds config parameters.
      */
+    public static MonopolyConfig monopolyConfig;
 
     public static void main(String[] args) {
         try {
@@ -24,6 +23,11 @@ public class Main {
         }
     }
 
+    /**
+     * Gets config path of the config file by using relativePath passed.
+     * @param relativePath source directory relative config path
+     * @return the path of config file
+     */
     private static String getConfigPath(String relativePath) {
         String configFolderPath = System.getProperty("user.dir") +File.separator +"MonopolyGame"+ File.separator + "config";
         return configFolderPath + File.separator + relativePath;

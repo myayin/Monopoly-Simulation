@@ -32,7 +32,7 @@ public class MonopolyGame {
         this.cup = new Cup();
         this.sleepAfterTurn = config.getSleepAfterTurn();
 
-        this.gameBoard = new BoardBuilder(this).withConfig(config).build();
+        this.gameBoard = new BoardBuilder().withConfig(config).build();
 
         List<String> playerNames = Arrays.asList(config.getPlayers());
         sortPlayers(playerNames);

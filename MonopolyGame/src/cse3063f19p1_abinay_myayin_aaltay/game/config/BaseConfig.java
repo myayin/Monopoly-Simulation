@@ -7,6 +7,11 @@ import cse3063f19p1_abinay_myayin_aaltay.game.PrintHelper;
 
 import java.io.*;
 
+/**
+ * BaseConfig is the abstract base class for GSON Library.
+ * Holds base attributes and functionality for generating,reading and writing config files.
+ * @author Anıl Altay
+ */
 public abstract class BaseConfig {
 
     private static Gson GSON_INSTANCE = new GsonBuilder()
