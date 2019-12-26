@@ -5,6 +5,12 @@ import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 
 import java.io.File;
 
+/**
+ * Main class.
+ * Monopoly Game Simulation. Simulates players and lets them play a simpler and modified version of monopoly game.
+ * Players make decisions according to the rules defined throughout the implementation and random number generation.
+ *
+ */
 public class Main {
 
     /**

@@ -59,6 +59,10 @@ public class MonopolyGame {
                 .toArray(SimulatedPlayer[]::new);
     }
 
+    /**
+     * Sorts players for turn ordering according to the dices rolled
+     * @param playerNames
+     */
     private void sortPlayers(List<String> playerNames) {
         Map<String, Integer> rolls = new HashMap<>();
 
@@ -104,27 +108,46 @@ public class MonopolyGame {
         }
     }
 
+    /**
+     * Checks if game is running or not
+     * @return <code>true</code> if game is running
+     *         <code>false</code> if not
+     */
     public boolean isRunning() {
         return running;
     }
 
+    /**
+     * Gets the number of players bankrupted
+     * @return number of bankrupted players
+     */
     private int countOfBankrupts() {
         return (int) Stream.of(players)
                 .filter(SimulatedPlayer::isBankrupt).count();
     }
 
+    /**
+     * Gets the current player
+     * @return current player
+     */
     private SimulatedPlayer getCurrentPlayer() {
         return players[currentPlayerIndex];
     }
 
     /* ----------------------------- */
 
+    /**
+     * Starts the game loop.
+     */
     public void start() {
         running = true;
 
         while (running) gameLoop();
     }
 
+    /**
+     * Gameloop logic.
+     */
     private void gameLoop() {
         SimulatedPlayer currentPlayer = getCurrentPlayer();
 
@@ -148,6 +171,10 @@ public class MonopolyGame {
 
     /* ----------------------------- */
 
+    /**
+     * Performs turn.
+     * @param player player to perform turn
+     */
     public void performTurn(SimulatedPlayer player) {
 
         if (player.isBankrupt()) {
@@ -198,6 +225,12 @@ public class MonopolyGame {
         }
     }
 
+    /**
+     * If player is jailed, performs jailed turn.
+     * @param player
+     * @return <code>true</code> if player gets out of the jail
+     *         <code>false</code> otherwise.
+     */
     public boolean performJailedTurn(SimulatedPlayer player) {
         final JailSquare jailSquare = gameBoard.getJailSquare();
 
@@ -232,6 +265,9 @@ public class MonopolyGame {
         return false;
     }
 
+    /**
+     * On turn ending event.
+     */
     private void onTurnEnding() {
         for (SimulatedPlayer simulatedPlayer : players) {
             simulatedPlayer.processUpgrading();
@@ -249,6 +285,9 @@ public class MonopolyGame {
 
     }
 
+    /**
+     * On cycle ending event.
+     */
     private void onCycleEnding() {
         PrintHelper.printSeperator();
         for (SimulatedPlayer player : players) {
@@ -264,6 +303,9 @@ public class MonopolyGame {
         PrintHelper.printSeperator();
     }
 
+    /**
+     * On game over event.
+     */
     private void onGameOver() {
         // TODO
         System.out.println("Game over. Winner is: TODO");
@@ -271,6 +313,10 @@ public class MonopolyGame {
 
     /* ----------------------------- */
 
+    /**
+     * Sleeps the main thread to make console logs more traceable.
+     * @param seconds seconds to sleep
+     */
     public void sleep(double seconds) {
         try {
             Thread.sleep((long) (seconds * 1000L));
@@ -278,6 +324,9 @@ public class MonopolyGame {
         }
     }
 
+    /**
+     * Stops the game.
+     */
     public void stop() {
         running = false;
     }
