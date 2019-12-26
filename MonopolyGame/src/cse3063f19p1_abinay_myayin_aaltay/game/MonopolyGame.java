@@ -2,15 +2,22 @@ package cse3063f19p1_abinay_myayin_aaltay.game;
 
 import cse3063f19p1_abinay_myayin_aaltay.game.builder.BoardBuilder;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
-import cse3063f19p1_abinay_myayin_aaltay.game.entity.*;
+import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
+import cse3063f19p1_abinay_myayin_aaltay.game.entity.Cup;
+import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.JailSquare;
-import cse3063f19p1_abinay_myayin_aaltay.game.square.LotSquare;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.PropertySquare;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
+/**
+ * MonopolyGame class holds and runs the game logic itself.
+ */
 public class MonopolyGame {
 
     private SimulatedPlayer[] players;
@@ -27,6 +34,10 @@ public class MonopolyGame {
     private int turnCounter;
     private int cycleCounter; // TODO: analyse
 
+    /**
+     * Constructs a MonopolyGame instance
+     * @param config configuration object
+     */
     public MonopolyGame(MonopolyConfig config) {
 
         PrintHelper.printSimulationOpener();

@@ -151,16 +151,24 @@ public class SimulatedPlayer {
     }
 
     /**
-     * Extracts the amount
+     * Extracts the amount of money to be paid from player's balance.
      *
      * @param amountToPay
-     * @return
+     * @return paid amount
      */
     private int extractFromBalance(int amountToPay) {
         this.setBalance(this.getBalance() - amountToPay);
         return amountToPay;
     }
 
+    /**
+     * Pays the passed amount of money to another player from balance if can not
+     * extracts the money to be paid from selling properties.
+     * @param amountToPay amount of money to be paid
+     * @param player player to be paid
+     * @return <code>true</code> player pays the amount specified
+     *         <code>false</code> otherwise.
+     */
     public boolean pay(int amountToPay, SimulatedPlayer player) {
         int paidAmount = 0;
 
@@ -180,15 +188,30 @@ public class SimulatedPlayer {
         return false;
     }
 
+    /**
+     * Player pays the passed amount of money from balance if can not,
+     * extracts the money to be paid from selling properties.
+     * @param amountToPay
+     * @return <code>true</code> player pays the amount specified
+     *         <code>false</code> otherwise.
+     */
     public boolean pay(int amountToPay) {
         return pay(amountToPay, null);
     }
 
+    /**
+     * Checks if player has all utility squares on the board.
+     * @return <code>true</code> if player has all of the utility squares on the board.
+     *         <code>false</code> otherwise.
+     */
     public boolean hasAllUtilities() {
         return ownedProperties.stream().filter(property -> property instanceof UtilitySquare).count()
                 == Main.monopolyConfig.getUtilitySquareCount();
     }
 
+    /**
+     * Upgrading process of a LotSquare that player owns.
+     */
     public void processUpgrading() {
         List<LotSquare> upgradableLots;
         int initialBalance = this.balance;
@@ -218,5 +241,4 @@ public class SimulatedPlayer {
                 playerName, balance,
                 isBankrupt() ? "- Bankrupt" : "");
     }
-
 }
