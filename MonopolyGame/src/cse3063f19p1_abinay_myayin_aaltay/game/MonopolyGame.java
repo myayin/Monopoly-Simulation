@@ -4,6 +4,8 @@ import cse3063f19p1_abinay_myayin_aaltay.game.builder.BoardBuilder;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.*;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.JailSquare;
+import cse3063f19p1_abinay_myayin_aaltay.game.square.LotSquare;
+import cse3063f19p1_abinay_myayin_aaltay.game.square.PropertySquare;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.Square;
 
 import java.util.*;
@@ -213,14 +215,19 @@ public class MonopolyGame {
         }
 
         //TODO: extract to player.
-        player.pay(jailSquare.getJailPenalty(),null);
+        player.pay(jailSquare.getJailPenalty(), null);
         System.out.println(player.getPlayerName() + " sold their properties to get out of the Jail!");
 
         return false;
     }
 
     private void onTurnEnding() {
-      ///  System.out.println(getCurrentPlayer().getPlayerName() + " has " + getCurrentPlayer().getBalance() + "$");
+        for (SimulatedPlayer simulatedPlayer : players) {
+            simulatedPlayer.processUpgrading();
+        }
+        //TODO IF Bankrupt & has property then sell properties
+
+        System.out.println(getCurrentPlayer().getPlayerName() + " has " + getCurrentPlayer().getBalance() + "$");
         turnCounter++;
 
         if (turnCounter == players.length) {
@@ -228,12 +235,20 @@ public class MonopolyGame {
             cycleCounter++;
             onCycleEnding();
         }
+
     }
 
     private void onCycleEnding() {
         PrintHelper.printSeperator();
         for (SimulatedPlayer player : players) {
             System.out.println(player + " has " + player.getBalance() + "$");
+            if (player.getOwnedProperties().size() != 0) {
+                System.out.println("Also has these properties: ");
+                for (PropertySquare ownedProperty : player.getOwnedProperties()) {
+                    System.out.println(" - "+ownedProperty.toString());
+                }
+            }
+            System.out.println();
         }
         PrintHelper.printSeperator();
     }

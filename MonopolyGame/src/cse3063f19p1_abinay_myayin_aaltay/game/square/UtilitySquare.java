@@ -15,4 +15,6 @@ public class UtilitySquare extends PropertySquare {
         dummyCup.rollDices();
         return (owner.hasAllUtilities() ? 40_000 : 10_000) * dummyCup.getTotal();
     }
+
+
 }

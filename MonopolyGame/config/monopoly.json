@@ -1,6 +1,6 @@
 {
   "taxSquareCount": 5,
-  "startingBalance": 1500,
+  "startingBalance": 150000,
   "goSalary": 200,
   "taxPayment": 100,
   "players": [
@@ -9,7 +9,7 @@
     "Merve",
     "Murat"
   ],
-  "sleepAfterTurn": 0.5,
+  "sleepAfterTurn": 0.2,
   "utilitySquareCount": 2,
   "vehicleSquareCount": 3
 }

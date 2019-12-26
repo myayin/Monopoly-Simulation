@@ -20,5 +20,8 @@ public abstract class Square {
 
     public abstract void performLanding(SimulatedPlayer player);
 
-
+    @Override
+    public String toString() {
+        return name;
+    }
 }

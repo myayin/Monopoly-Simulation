@@ -12,4 +12,6 @@ public class VehicleSquare extends PropertySquare {
     public int getRent() {
         return this.rent;
     }
+
+
 }

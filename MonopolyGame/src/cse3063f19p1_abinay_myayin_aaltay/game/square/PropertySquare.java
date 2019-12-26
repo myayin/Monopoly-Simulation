@@ -59,4 +59,8 @@ public abstract class PropertySquare extends Square {
         player.pay(this.getRent(), player);
     }
 
+    public void onSold(){
+        owner = null;
+    }
+
 }

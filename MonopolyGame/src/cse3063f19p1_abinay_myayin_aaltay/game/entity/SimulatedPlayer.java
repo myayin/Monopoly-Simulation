@@ -1,15 +1,18 @@
 package cse3063f19p1_abinay_myayin_aaltay.game.entity;
 
 import cse3063f19p1_abinay_myayin_aaltay.Main;
-import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
+import cse3063f19p1_abinay_myayin_aaltay.game.square.LotGroup;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.LotSquare;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.PropertySquare;
 import cse3063f19p1_abinay_myayin_aaltay.game.square.UtilitySquare;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
+/**
+ * This class simulates player of Monopoly Game.
+ */
 public class SimulatedPlayer {
 
     private int balance;
@@ -18,6 +21,13 @@ public class SimulatedPlayer {
     private boolean isBankrupt;
     private List<PropertySquare> ownedProperties = new ArrayList<PropertySquare>();
 
+    /**
+     * Creates instance of simulated player.
+     *
+     * @param playerName name of this player
+     * @param balance    starting balance of this player
+     * @param board      board that player will set their piece on
+     */
     public SimulatedPlayer(String playerName, int balance, Board board) {
         this.playerName = playerName;
         this.balance = balance;
@@ -25,46 +35,104 @@ public class SimulatedPlayer {
         this.isBankrupt = false;
     }
 
+    /**
+     * Gets the balance.
+     *
+     * @return balance
+     */
     public int getBalance() {
         return balance;
     }
 
+    /**
+     * Sets the balance.
+     *
+     * @param balance
+     */
     public void setBalance(int balance) {
         this.balance = balance;
     }
 
+    /**
+     * Gets total value of properties player owns.
+     *
+     * @return
+     */
     public int getTotalPropertyValue() {
         return ownedProperties.stream().mapToInt(PropertySquare::getSellingPrice).sum();
     }
 
+    /**
+     * Checks if the player is bankrupt.
+     *
+     * @return <code>true</code> if player is bankrupt;
+     * <code>false</code> otherwise.
+     */
     public boolean isBankrupt() {
         return isBankrupt;
     }
 
+    /**
+     * Gets the name of this player.
+     *
+     * @return name
+     */
     public String getPlayerName() {
         return playerName;
     }
 
+    /**
+     * Gets the piece of this player.
+     *
+     * @return piece
+     */
     public Piece getPiece() {
         return piece;
     }
 
+    /**
+     * Gets the list of owned properties.
+     *
+     * @return list of owned properties.
+     */
     public List<PropertySquare> getOwnedProperties() {
         return ownedProperties;
     }
 
+    /**
+     * Buys the passed property.
+     *
+     * @param propertySquare
+     */
     public void buyProperty(PropertySquare propertySquare) {
-        // if (this.getBalance() >= propertySquare.getBuyingPrice()) {
-            this.setBalance(this.getBalance() - propertySquare.getBuyingPrice());
-            ownedProperties.add(propertySquare);
-       // } else throw new IllegalArgumentException(""); //TODO: decide exception string.
+        this.setBalance(this.getBalance() - propertySquare.getBuyingPrice());
+        ownedProperties.add(propertySquare);
     }
 
+    /**
+     * Sells the passed property.
+     *
+     * @param propertySquare
+     */
     public void sellProperty(PropertySquare propertySquare) {
         this.setBalance(this.getBalance() + propertySquare.getSellingPrice());
-        ownedProperties.remove(propertySquare);
+        if (propertySquare instanceof LotSquare) {
+            LotGroup lotGroup = ((LotSquare) propertySquare).getLotGroup();
+            if (lotGroup.getLevel() != 0 && lotGroup.ownedBy(this))
+                lotGroup.sellAll();
+        } else {
+            ownedProperties.remove(propertySquare);
+            propertySquare.onSold();
+        }
     }
 
+    /**
+     * If player is out of money to pay taxes or rent,
+     * they extract the amount they have to pay by selling their properties.
+     *
+     * @param amountToPay
+     * @return paid amount
+     */
     private int extractFromProperties(int amountToPay) {
         int total = 0;
         List<PropertySquare> propertiesToSell = new ArrayList<>();
@@ -82,6 +150,12 @@ public class SimulatedPlayer {
         return amountToPay;
     }
 
+    /**
+     * Extracts the amount
+     *
+     * @param amountToPay
+     * @return
+     */
     private int extractFromBalance(int amountToPay) {
         this.setBalance(this.getBalance() - amountToPay);
         return amountToPay;
@@ -115,6 +189,28 @@ public class SimulatedPlayer {
                 == Main.monopolyConfig.getUtilitySquareCount();
     }
 
+    public void processUpgrading() {
+        List<LotSquare> upgradableLots;
+        int initialBalance = this.balance;
+        int moneySpent = 0;
+        do {
+            if (moneySpent >= initialBalance * 0.4) break;
+
+            upgradableLots = ownedProperties.stream()
+                    .filter(propertySquare -> propertySquare instanceof LotSquare)
+                    .map(LotSquare.class::cast)
+                    .filter(lotSquare -> lotSquare.canBeUpgraded() && lotSquare.getUpgradePrice() <= balance)
+                    .collect(Collectors.toList());
+
+            if (upgradableLots.size() == 0) break;
+
+            LotSquare pickedLot = upgradableLots.get((int) (Math.random() * upgradableLots.size()));
+
+            pickedLot.upgrade();
+            moneySpent += pickedLot.getUpgradePrice();
+
+        } while (upgradableLots.size() > 0);
+    }
 
     @Override
     public String toString() {
@@ -122,6 +218,5 @@ public class SimulatedPlayer {
                 playerName, balance,
                 isBankrupt() ? "- Bankrupt" : "");
     }
-
 
 }
