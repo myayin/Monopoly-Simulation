@@ -1,5 +1,6 @@
 package cse3063f19p1_abinay_myayin_aaltay.game.builder;
 
+import com.google.gson.annotations.Expose;
 import cse3063f19p1_abinay_myayin_aaltay.game.MonopolyGame;
 import cse3063f19p1_abinay_myayin_aaltay.game.config.MonopolyConfig;
 import cse3063f19p1_abinay_myayin_aaltay.game.entity.Board;
@@ -14,6 +15,7 @@ import java.util.Random;
 /**
  * BoardBuilder is used to build instances of
  * Board object from values configured by the setters.
+ *
  * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class BoardBuilder {
@@ -26,6 +28,10 @@ public class BoardBuilder {
     private int taxPayment, goSalary;
     private int utilitySquareSize;
     private int vehicleSquareSize;
+    private String[] lotNames;
+    private String[] utilityNames;
+    private String[] vehicleNames;
+
 
     /**
      * Creates an instance of BoardBuilder.
@@ -88,6 +94,18 @@ public class BoardBuilder {
         return this;
     }
 
+    public void setLotNames(String[] lotNames) {
+        this.lotNames = lotNames;
+    }
+
+    public void setUtilityNames(String[] utilityNames) {
+        this.utilityNames = utilityNames;
+    }
+
+    public void setVehicleNames(String[] vehicleNames) {
+        this.vehicleNames = vehicleNames;
+    }
+
     /**
      * Calls setters with the parameters given in the passed config.
      *
@@ -100,6 +118,9 @@ public class BoardBuilder {
         setTaxPayment(config.getTaxPayment());
         setUtilitySquareSize(config.getUtilitySquareCount());
         setVehicleSquareSize(config.getVehicleSquareCount());
+        setLotNames(config.getLotNames());
+        setUtilityNames(config.getUtilityNames());
+        setVehicleNames(config.getVehicleNames());
 
         return this;
     }
@@ -119,108 +140,70 @@ public class BoardBuilder {
             squares.add(null);
         }
 
-        //TODO: move lot list to config
-        List<String> lotNames = new ArrayList<>(List.of(
-                "Kasımpaşa",
-                "Dolapdere",
-                "Sultanahmet",
-                "Karaköy",
-                "Sirkeci",
-                "Beyoğlu",
-                "Beşiktaş",
-                "Taksim",
-                "Harbiye",
-                "Şişli",
-                "Mecidiyeköy",
-                "Bostancı",
-                "Erenköy",
-                "Caddebostan",
-                "Nişantaşı",
-                "Teşvikiye",
-                "Maçka",
-                "Levent",
-                "Etiler",
-                "Bebek",
-                "Tarabya",
-                "Yeniköy"
-        ));
-        List<String> utilityNames = new ArrayList<>(List.of(
-                "Sular Dairesi",
-                "Elektrik İdaresi",
-                "Vergi Dairesi",
-                "Doğalgaz Dağıtım Firması",
-                "İnternet Servis Sağlayıcısı"
-        ));
-
-        List<String> vehicleNames = new ArrayList<>(List.of(
-                "Haydarpaşa Treni",
-                "Kadıköy Vapuru",
-                "Kabataş Vapuru",
-                "Sirkeci Treni",
-                "Marmaray",
-                "Metrobüs"
-        ));
+        List<String> lotNames = new ArrayList<>(List.of(this.lotNames));
+        List<String> utilityNames = new ArrayList<>(List.of(this.utilityNames));
+        List<String> vehicleNames = new ArrayList<>(List.of(this.vehicleNames));
 
         //Adds Red Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.RED),
-                new LotSquare(1, lotNames.remove(rnd.nextInt(lotNames.size())), 6000,5000 , 6000, 600),
-                new LotSquare(3, lotNames.remove(rnd.nextInt(lotNames.size())), 6000,5000,6000, 600)
+                new LotSquare(1, lotNames.remove(rnd.nextInt(lotNames.size())), 6000, 5000, 6000, 600),
+                new LotSquare(3, lotNames.remove(rnd.nextInt(lotNames.size())), 6000, 5000, 6000, 600)
         );
 
         //Adds Blue Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.BLUE),
-                new LotSquare(6, lotNames.remove(rnd.nextInt(lotNames.size())), 10_000, 5000 ,10_000, 1000),
+                new LotSquare(6, lotNames.remove(rnd.nextInt(lotNames.size())), 10_000, 5000, 10_000, 1000),
                 new LotSquare(8, lotNames.remove(rnd.nextInt(lotNames.size())), 10_000, 5000, 10_000, 1000),
-                new LotSquare(9, lotNames.remove(rnd.nextInt(lotNames.size())), 12_000, 5000,12_000, 1200)
+                new LotSquare(9, lotNames.remove(rnd.nextInt(lotNames.size())), 12_000, 5000, 12_000, 1200)
         );
 
         //Adds Magenta Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.MAGENTA),
-                new LotSquare(11, lotNames.remove(rnd.nextInt(lotNames.size())), 14_000,10_000, 14_000, 1400),
-                new LotSquare(13, lotNames.remove(rnd.nextInt(lotNames.size())), 14_000,10_000, 14_000, 1400),
-                new LotSquare(14, lotNames.remove(rnd.nextInt(lotNames.size())), 16_000,10_000, 16_000, 1600)
+                new LotSquare(11, lotNames.remove(rnd.nextInt(lotNames.size())), 14_000, 10_000, 14_000, 1400),
+                new LotSquare(13, lotNames.remove(rnd.nextInt(lotNames.size())), 14_000, 10_000, 14_000, 1400),
+                new LotSquare(14, lotNames.remove(rnd.nextInt(lotNames.size())), 16_000, 10_000, 16_000, 1600)
         );
 
         //Adds Orange Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.ORANGE),
-                new LotSquare(16, lotNames.remove(rnd.nextInt(lotNames.size())), 18_000,10_000, 18_000, 1800),
-                new LotSquare(18, lotNames.remove(rnd.nextInt(lotNames.size())), 18_000,10_000, 18_000, 1800),
-                new LotSquare(19, lotNames.remove(rnd.nextInt(lotNames.size())), 20_000,10_000, 20_000, 2000)
+                new LotSquare(16, lotNames.remove(rnd.nextInt(lotNames.size())), 18_000, 10_000, 18_000, 1800),
+                new LotSquare(18, lotNames.remove(rnd.nextInt(lotNames.size())), 18_000, 10_000, 18_000, 1800),
+                new LotSquare(19, lotNames.remove(rnd.nextInt(lotNames.size())), 20_000, 10_000, 20_000, 2000)
         );
 
         //Adds Cyan Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.CYAN),
-                new LotSquare(21, lotNames.remove(rnd.nextInt(lotNames.size())), 22_000,15_000, 22_000, 2200),
-                new LotSquare(23, lotNames.remove(rnd.nextInt(lotNames.size())), 22_000,15_000, 22_000, 2200),
-                new LotSquare(24, lotNames.remove(rnd.nextInt(lotNames.size())), 24_000,15_000, 24_000, 2400)
+                new LotSquare(21, lotNames.remove(rnd.nextInt(lotNames.size())), 22_000, 15_000, 22_000, 2200),
+                new LotSquare(23, lotNames.remove(rnd.nextInt(lotNames.size())), 22_000, 15_000, 22_000, 2200),
+                new LotSquare(24, lotNames.remove(rnd.nextInt(lotNames.size())), 24_000, 15_000, 24_000, 2400)
         );
 
         //Adds Yellow Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.YELLOW),
-                new LotSquare(26, lotNames.remove(rnd.nextInt(lotNames.size())), 26_000,15_000, 26_000, 2600),
-                new LotSquare(27, lotNames.remove(rnd.nextInt(lotNames.size())), 26_000,15_000, 26_000, 2600),
-                new LotSquare(29, lotNames.remove(rnd.nextInt(lotNames.size())), 28_000,15_000, 28_000, 2600)
+                new LotSquare(26, lotNames.remove(rnd.nextInt(lotNames.size())), 26_000, 15_000, 26_000, 2600),
+                new LotSquare(27, lotNames.remove(rnd.nextInt(lotNames.size())), 26_000, 15_000, 26_000, 2600),
+                new LotSquare(29, lotNames.remove(rnd.nextInt(lotNames.size())), 28_000, 15_000, 28_000, 2600)
         );
 
         //Adds Green Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.GREEN),
-                new LotSquare(31, lotNames.remove(rnd.nextInt(lotNames.size())), 30_000,20_000,30_000, 3000),
-                new LotSquare(32, lotNames.remove(rnd.nextInt(lotNames.size())), 30_000,20_000, 30_000, 3000),
-                new LotSquare(34, lotNames.remove(rnd.nextInt(lotNames.size())), 32_000,20_000, 32_000, 3000)
+                new LotSquare(31, lotNames.remove(rnd.nextInt(lotNames.size())), 30_000, 20_000, 30_000, 3000),
+                new LotSquare(32, lotNames.remove(rnd.nextInt(lotNames.size())), 30_000, 20_000, 30_000, 3000),
+                new LotSquare(34, lotNames.remove(rnd.nextInt(lotNames.size())), 32_000, 20_000, 32_000, 3000)
         );
 
-        //Adds Blue Colored Lot Group.
+        //Adds Dark Gray Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.DARK_GRAY),
-                new LotSquare(38, lotNames.remove(rnd.nextInt(lotNames.size())), 35_000,20_000, 35_000, 3500),
-                new LotSquare(39, lotNames.remove(rnd.nextInt(lotNames.size())), 40_000,20_000, 40_000, 4000)
+                new LotSquare(38, lotNames.remove(rnd.nextInt(lotNames.size())), 35_000, 20_000, 35_000, 3500),
+                new LotSquare(39, lotNames.remove(rnd.nextInt(lotNames.size())), 40_000, 20_000, 40_000, 4000)
         );
 
         //Sets GoSquare to location 0, JailSquare to location 10 and GoToJailSquare to location 30.
@@ -293,8 +276,9 @@ public class BoardBuilder {
 
     /**
      * Combine passed squares in a color group and sets them on list of squares.
-     * @param squares square list which holds all squares
-     * @param lotGroup lot group that inserted squares will be in
+     *
+     * @param squares        square list which holds all squares
+     * @param lotGroup       lot group that inserted squares will be in
      * @param squaresToPlace squares to be color grouped and to be set inside squares list
      */
     private void addGroupedLots(List<Square> squares, LotGroup lotGroup, LotSquare... squaresToPlace) {

@@ -32,6 +32,15 @@ public class MonopolyConfig extends BaseConfig {
     @Expose
     private int vehicleSquareCount;
 
+    @Expose
+    private String[] lotNames;
+
+    @Expose
+    private String[] utilityNames;
+
+    @Expose
+    private String[] vehicleNames;
+
     public MonopolyConfig(String path) {
         super(path);
     }
@@ -63,6 +72,20 @@ public class MonopolyConfig extends BaseConfig {
         sleepAfterTurn = 0.5;
         utilitySquareCount = 2;
         vehicleSquareCount = 3;
+        lotNames = new String[]{"Kasımpaşa", "Dolapdere", "Sultanahmet", "Karaköy",
+                "Sirkeci", "Beyoğlu", "Beşiktaş", "Taksim",
+                "Harbiye", "Şişli", "Mecidiyeköy", "Bostancı",
+                "Erenköy", "Caddebostan", "Nişantaşı", "Teşvikiye",
+                "Maçka", "Levent", "Etiler", "Bebek",
+                "Tarabya", "Yeniköy"};
+        utilityNames = new String[]{"Sular Dairesi",
+                "Elektrik İdaresi",
+                "Vergi Dairesi",
+                "Doğalgaz Dağıtım Firması",
+                "İnternet Servis Sağlayıcısı"};
+        vehicleNames = new String[]{"Haydarpaşa Treni",
+                "Kadıköy Vapuru", "Kabataş Vapuru",
+                "Sirkeci Treni", "Marmaray", "Metrobüs"};
     }
 
     public int getTaxSquareCount() {
@@ -96,4 +119,17 @@ public class MonopolyConfig extends BaseConfig {
     public int getVehicleSquareCount() {
         return vehicleSquareCount;
     }
+
+    public String[] getLotNames() {
+        return lotNames;
+    }
+
+    public String[] getUtilityNames() {
+        return utilityNames;
+    }
+
+    public String[] getVehicleNames() {
+        return vehicleNames;
+    }
+
 }

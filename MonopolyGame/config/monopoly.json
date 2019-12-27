@@ -1,6 +1,6 @@
 {
   "taxSquareCount": 5,
-  "startingBalance": 150000,
+  "startingBalance": 200000,
   "goSalary": 200,
   "taxPayment": 100,
   "players": [
@@ -9,7 +9,46 @@
     "Merve",
     "Murat"
   ],
-  "sleepAfterTurn": 0.2,
+  "sleepAfterTurn": 0.5,
   "utilitySquareCount": 2,
-  "vehicleSquareCount": 3
+  "vehicleSquareCount": 3,
+  "lotNames": [
+    "Kasımpaşa",
+    "Dolapdere",
+    "Sultanahmet",
+    "Karaköy",
+    "Sirkeci",
+    "Beyoğlu",
+    "Beşiktaş",
+    "Taksim",
+    "Harbiye",
+    "Şişli",
+    "Mecidiyeköy",
+    "Bostancı",
+    "Erenköy",
+    "Caddebostan",
+    "Nişantaşı",
+    "Teşvikiye",
+    "Maçka",
+    "Levent",
+    "Etiler",
+    "Bebek",
+    "Tarabya",
+    "Yeniköy"
+  ],
+  "utilityNames": [
+    "Sular Dairesi",
+    "Elektrik İdaresi",
+    "Vergi Dairesi",
+    "Doğalgaz Dağıtım Firması",
+    "İnternet Servis Sağlayıcısı"
+  ],
+  "vehicleNames": [
+    "Haydarpaşa Treni",
+    "Kadıköy Vapuru",
+    "Kabataş Vapuru",
+    "Sirkeci Treni",
+    "Marmaray",
+    "Metrobüs"
+  ]
 }
