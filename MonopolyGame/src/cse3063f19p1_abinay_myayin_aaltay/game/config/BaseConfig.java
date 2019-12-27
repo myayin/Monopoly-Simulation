@@ -10,21 +10,41 @@ import java.io.*;
 /**
  * BaseConfig is the abstract base class for GSON Library.
  * Holds base attributes and functionality for generating,reading and writing config files.
+ *
  * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public abstract class BaseConfig {
 
+    /**
+     * One and only GSON instance used by this simulation.
+     * Includes pretty printing for IO operations.
+     */
     private static Gson GSON_INSTANCE = new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
             .setPrettyPrinting()
             .create();
 
+    /**
+     * Path of the config file. Used by {@link BaseConfig#readConfig()}
+     * for IO JSON deserialization purposes. Set by the constructor ({@link BaseConfig#BaseConfig(String)})
+     */
     protected String path;
 
+    /**
+     * Constructs a base JSON config representation
+     *
+     * @param path Path to the JSON file
+     */
     public BaseConfig(String path) {
         this.path = path;
     }
 
+    /**
+     * Reads the file from {@link BaseConfig#path} and
+     * deserializes a config object from it
+     *
+     * @return Deserialized config object
+     */
     public BaseConfig readConfig() {
         try {
             FileReader fileReader = new FileReader(path);
@@ -46,6 +66,10 @@ public abstract class BaseConfig {
         return this;
     }
 
+    /**
+     * Generates an empty JSON file on the filesystem path
+     * pointed by {@link BaseConfig#path}
+     */
     public void generate() {
         try {
             File configFile = new File(path);
@@ -59,8 +83,18 @@ public abstract class BaseConfig {
 
     }
 
+    /**
+     * Resets the config object into its initial state.
+     * Used when the config file is absent and being re-created.
+     */
     public abstract void resetConfig();
 
+    /**
+     * Serializes the JSON config representation
+     * and writes it on the filesystem location pointed by {@link BaseConfig#path}
+     *
+     * @throws IOException Thrown if an unexpected IO problem occurs
+     */
     public void writeConfig() throws IOException {
         FileWriter fileWriter = new FileWriter(path);
         GSON_INSTANCE.toJson(this, fileWriter);

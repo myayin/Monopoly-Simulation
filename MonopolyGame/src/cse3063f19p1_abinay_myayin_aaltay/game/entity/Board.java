@@ -53,6 +53,11 @@ public class Board {
         return squares.get(location);
     }
 
+    /**
+     * Returns the count of squares
+     *
+     * @return Count of squares
+     */
     public int getSquareCount() {
         return squares.size();
     }
