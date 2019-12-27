@@ -5,6 +5,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 /**
  * Represents square from Monopoly Game.
  * Abstraction for all Squares.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public abstract class Square {
 

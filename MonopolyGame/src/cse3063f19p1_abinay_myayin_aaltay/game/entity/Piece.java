@@ -3,7 +3,7 @@ package cse3063f19p1_abinay_myayin_aaltay.game.entity;
 /**
  * Represents pieces from Monopoly Game.
  * Abstraction for location information of the simulated user.
- * @author anilaltay
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class Piece {
 

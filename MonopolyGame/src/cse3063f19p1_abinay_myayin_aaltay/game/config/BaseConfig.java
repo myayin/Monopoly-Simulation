@@ -10,7 +10,7 @@ import java.io.*;
 /**
  * BaseConfig is the abstract base class for GSON Library.
  * Holds base attributes and functionality for generating,reading and writing config files.
- * @author Anıl Altay
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public abstract class BaseConfig {
 

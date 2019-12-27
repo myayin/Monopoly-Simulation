@@ -9,7 +9,7 @@ import java.io.File;
  * Main class.
  * Monopoly Game Simulation. Simulates players and lets them play a simpler and modified version of monopoly game.
  * Players make decisions according to the rules defined throughout the implementation and random number generation.
- *
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class Main {
 

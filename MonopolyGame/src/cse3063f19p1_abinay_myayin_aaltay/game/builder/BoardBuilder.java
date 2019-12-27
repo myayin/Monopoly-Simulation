@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * BoardBuilder is used to build instances of
  * Board object from values configured by the setters.
- * @author Anıl Altay
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class BoardBuilder {
 
@@ -161,17 +161,6 @@ public class BoardBuilder {
                 "Metrobüs"
         ));
 
-       /* while (squares.size() < COUNT_TOTAL_SQUARE ) {
-            Square square = new Square("Dummy Square") { // TODO: random square
-                @Override
-                public void performLanding(SimulatedPlayer player) {
-                }
-            };
-            squares.add(square);
-        }
-        Collections.shuffle(squares);*/
-
-
         //Adds Red Colored Lot Group.
         addGroupedLots(
                 squares, new LotGroup(Color.RED),
@@ -229,7 +218,7 @@ public class BoardBuilder {
 
         //Adds Blue Colored Lot Group.
         addGroupedLots(
-                squares, new LotGroup(Color.BLUE),
+                squares, new LotGroup(Color.DARK_GRAY),
                 new LotSquare(38, lotNames.remove(rnd.nextInt(lotNames.size())), 35_000,20_000, 35_000, 3500),
                 new LotSquare(39, lotNames.remove(rnd.nextInt(lotNames.size())), 40_000,20_000, 40_000, 4000)
         );
@@ -263,7 +252,6 @@ public class BoardBuilder {
         //Places Utility Squares on the board.
         for (int i = 0; i < utilitySquareSize; i++) {
             int location = emptyLocations.remove(rnd.nextInt(emptyLocations.size()));
-            System.out.println(lotNames.size());
             UtilitySquare utilitySquare = new UtilitySquare(location,
                     utilityNames.remove(rnd.nextInt(utilityNames.size())),
                     10_000, 8_000); //TODO: refactor constant assignment

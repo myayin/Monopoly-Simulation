@@ -4,13 +4,29 @@ import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Represents the color groups from Monopoly game.
  * LotGroups hold lot squares and grouping functionality inside.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class LotGroup {
+
+    public static final Map<Color, String> COLOR_NAME_LOOKUP = new HashMap<>();
+
+    static {
+        COLOR_NAME_LOOKUP.put(Color.RED, "Red");
+        COLOR_NAME_LOOKUP.put(Color.BLUE, "Blue");
+        COLOR_NAME_LOOKUP.put(Color.MAGENTA, "Magenta");
+        COLOR_NAME_LOOKUP.put(Color.ORANGE, "Orange");
+        COLOR_NAME_LOOKUP.put(Color.CYAN, "Cyan");
+        COLOR_NAME_LOOKUP.put(Color.YELLOW, "Yellow");
+        COLOR_NAME_LOOKUP.put(Color.GREEN, "Green");
+        COLOR_NAME_LOOKUP.put(Color.DARK_GRAY, "Gray");
+    }
 
     private List<LotSquare> lotList = new ArrayList<>();
     private Color color;
@@ -70,6 +86,11 @@ public class LotGroup {
                 lotSquare.downgrade();
             owner.sellProperty(lotSquare);
         }
+    }
+
+    @Override
+    public String toString() {
+        return COLOR_NAME_LOOKUP.get(color);
     }
 
 }

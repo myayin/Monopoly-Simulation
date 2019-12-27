@@ -2,6 +2,7 @@ package cse3063f19p1_abinay_myayin_aaltay.game.square;
 
 /**
  * Represents the Vehicle Square from Monopoly Game.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class VehicleSquare extends PropertySquare {
 

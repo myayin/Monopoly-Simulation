@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * Represents a standard dice.
- * @author anilaltay
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class Dice {
 

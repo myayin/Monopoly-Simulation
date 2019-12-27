@@ -5,6 +5,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 /**
  * Represents the Go Square from Monopoly Game.
  * Players start from this square and get paid everytime they land on this square or passing by.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class GoSquare extends Square {
 

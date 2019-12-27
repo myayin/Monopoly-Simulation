@@ -10,6 +10,7 @@ import java.util.Set;
 /**
  * Represents the Jail Square from Monopoly Game.
  * Holds players inside and jailed players cant play their turns, until they pay the penalty.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class JailSquare extends Square {
     //It is false, player is just visiting. True when player in jail

@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 /**
  * PrintHelper class handles basic printing patterns and routines.
- * @author anilaltay
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class PrintHelper {
 

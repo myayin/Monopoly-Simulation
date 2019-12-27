@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 
 /**
  * MonopolyGame class holds and runs the game logic itself.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class MonopolyGame {
 

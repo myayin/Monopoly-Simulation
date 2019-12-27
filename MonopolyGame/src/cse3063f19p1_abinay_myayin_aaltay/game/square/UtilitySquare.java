@@ -6,6 +6,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 /**
  * Represents Utility Square from Monopoly Game.
  * Landing players rolls two dices and pays rent based on total facing value of these dices
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class UtilitySquare extends PropertySquare {
 

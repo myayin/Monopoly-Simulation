@@ -6,6 +6,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
  * Represents the PropertySquare from Monopoly Game.
  * Players can buy property squares.
  * Visiting players pay rent to the owner of the Property.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public abstract class PropertySquare extends Square {
     private int buyingPrice;

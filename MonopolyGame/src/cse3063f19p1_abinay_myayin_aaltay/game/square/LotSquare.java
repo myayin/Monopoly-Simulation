@@ -5,6 +5,7 @@ package cse3063f19p1_abinay_myayin_aaltay.game.square;
  * Players can buy Lots and when they have all the colored lot group
  * they can build houses on it up to 4 houses
  * after building 4 homes players can build hotels.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class LotSquare extends PropertySquare {
 
@@ -141,7 +142,7 @@ public class LotSquare extends PropertySquare {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[").append(lotGroup.getColor()).append("] ").append(getName());
+        sb.append("[").append(lotGroup.toString()).append("] ").append(getName());
         if(1 <= buildingLevel && buildingLevel <= 4)
             sb.append(' ').append(buildingLevel).append(" House");
         else if(buildingLevel == 5)

@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 /**
  * Represents the dice cup from Monopoly Game.
  * A Pure fabricator of dice objects.
- * @author anilaltay
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class Cup {
 

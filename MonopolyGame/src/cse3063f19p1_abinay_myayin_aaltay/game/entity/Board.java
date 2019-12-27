@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Represents the board from Monopoly Game.
  * Holds squares themselves and functionality of squares.
- * @author Anıl Altay
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class Board {
 

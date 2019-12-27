@@ -5,6 +5,7 @@ import cse3063f19p1_abinay_myayin_aaltay.game.entity.SimulatedPlayer;
 /**
  * Represents the TaxSquare from Monopoly Game.
  * Players pay tax when they land on this square.
+ * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class TaxSquare extends Square {
 
