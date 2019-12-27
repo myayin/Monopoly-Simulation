@@ -78,7 +78,7 @@ public class MonopolyConfig extends BaseConfig {
 
         lotNames = new String[]{"Kasımpaşa", "Dolapdere", "Sultanahmet", "Karaköy",
                 "Sirkeci", "Beyoğlu", "Beşiktaş", "Taksim",
-                "Harbiye", "Şişli", "Mecidiyeköy", "Bostancı",
+                "Harbiye", "Sisli", "Mecidiyeköy", "Bostancı",
                 "Erenköy", "Caddebostan", "Nişantaşı", "Teşvikiye",
                 "Maçka", "Levent", "Etiler", "Bebek",
                 "Tarabya", "Yeniköy"};
