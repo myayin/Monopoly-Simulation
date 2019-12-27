@@ -1,4 +1,3 @@
-package cse3063f19p1_abinay_myayin_aaltay.unit;
 
 public class MiscSuite {
 

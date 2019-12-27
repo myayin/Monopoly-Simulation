@@ -219,10 +219,10 @@ public class BoardBuilder {
 
         //TODO: ensure there is no empty location beforehand
         for (Integer emptyLocation : emptyLocations) {
-            squares.set(emptyLocation, new Square(emptyLocation, "Dummy Square") {
+            squares.set(emptyLocation, new Square(emptyLocation, "Regular Square") {
                 @Override
                 public void performLanding(SimulatedPlayer player) {
-                    System.out.println("Dummy square :)");
+                    System.out.println("Regular Square");
                 }
             });
         }

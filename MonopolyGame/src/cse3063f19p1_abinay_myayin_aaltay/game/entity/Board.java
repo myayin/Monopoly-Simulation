@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Represents the board from Monopoly Game.
  * Holds squares themselves and functionality of squares.
+ *
  * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class Board {
@@ -19,6 +20,7 @@ public class Board {
 
     /**
      * Sets squares list.
+     *
      * @param squares square list to be set as squares of Board
      */
     public void initSquares(List<Square> squares) {
@@ -30,7 +32,8 @@ public class Board {
 
     /**
      * Gets the square according to the current location and total value of thrown dices.
-     * @param location current location of the simulated player
+     *
+     * @param location  current location of the simulated player
      * @param diceTotal total of facing values of thrown dices
      * @return next square player will land on
      */
@@ -40,6 +43,7 @@ public class Board {
 
     /**
      * Gets the square at the given location.
+     *
      * @param location location index of the square
      * @return square at the location.
      */
@@ -49,8 +53,13 @@ public class Board {
         return squares.get(location);
     }
 
+    public int getSquareCount() {
+        return squares.size();
+    }
+
     /**
      * Gets the Go Square from squares.
+     *
      * @return Go Square of board
      */
     public GoSquare getGoSquare() {
@@ -62,12 +71,13 @@ public class Board {
 
     /**
      * Gets the Jail Square from squares.
+     *
      * @return Jail Square of board
      */
-    public JailSquare getJailSquare(){
+    public JailSquare getJailSquare() {
         Square square = squares.get(JailSquare.LOCATION);
         if (!(square instanceof JailSquare))
-            throw new InternalError("Location #"+JailSquare.LOCATION+" must be JailSquare. Found " + square.getClass().getSimpleName() + " instead.");
+            throw new InternalError("Location #" + JailSquare.LOCATION + " must be JailSquare. Found " + square.getClass().getSimpleName() + " instead.");
         return (JailSquare) square;
     }
 
