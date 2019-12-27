@@ -11,36 +11,23 @@ import java.util.Map;
 /**
  * Represents the color groups from Monopoly game.
  * LotGroups hold lot squares and grouping functionality inside.
- * @author Anıl Altay, Ayten Binay, Merve Yayın
  */
 public class LotGroup {
 
-    public static final Map<Color, String> COLOR_NAME_LOOKUP = new HashMap<>();
-
-    static {
-        COLOR_NAME_LOOKUP.put(Color.RED, "Red");
-        COLOR_NAME_LOOKUP.put(Color.BLUE, "Blue");
-        COLOR_NAME_LOOKUP.put(Color.MAGENTA, "Magenta");
-        COLOR_NAME_LOOKUP.put(Color.ORANGE, "Orange");
-        COLOR_NAME_LOOKUP.put(Color.CYAN, "Cyan");
-        COLOR_NAME_LOOKUP.put(Color.YELLOW, "Yellow");
-        COLOR_NAME_LOOKUP.put(Color.GREEN, "Green");
-        COLOR_NAME_LOOKUP.put(Color.DARK_GRAY, "Gray");
-    }
-
     private List<LotSquare> lotList = new ArrayList<>();
-    private Color color;
+    private String color;
 
     /**
      * Constructs Lot group
      * @param color color of the group to be constructed
      */
-    public LotGroup(Color color) {
+    public LotGroup(String color) {
         this.color = color;
     }
 
     /**
      * Adds Lot to the lot group.
+     *
      * @param lotSquare lot square to be added inside of the group
      */
     public void appendLot(LotSquare lotSquare) {
@@ -52,7 +39,7 @@ public class LotGroup {
      * Checks if player has all lot squares inside this group.
      * @param player
      * @return <code>true</code> if player has all lot squares of this lot group
-     *         <code>false</code> otherwise.
+     * <code>false</code> otherwise.
      */
     public boolean ownedBy(SimulatedPlayer player) {
         return lotList.stream().allMatch(lot -> lot.owner != null && lot.owner.equals(player));
@@ -61,6 +48,7 @@ public class LotGroup {
     /**
      * Gets the building count/level of this lot group
      * by getting the building level of lot square with the least valuable building(s) in lot group.
+     *
      * @return lot group level
      */
     public int getLevel() {
@@ -71,7 +59,7 @@ public class LotGroup {
      * Color of this group.
      * @return color
      */
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
@@ -90,7 +78,7 @@ public class LotGroup {
 
     @Override
     public String toString() {
-        return COLOR_NAME_LOOKUP.get(color);
+        return color;
     }
 
 }

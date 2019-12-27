@@ -50,5 +50,201 @@
     "Sirkeci Treni",
     "Marmaray",
     "Metrobüs"
+  ],
+  "lotGroups": [
+    {
+      "color": "RED",
+      "lots": [
+        {
+          "location": 1,
+          "buyingPrice": 6000,
+          "baseUpgradePrice": 5000,
+          "sellingPrice": 6000,
+          "baseRentPrice": 6000
+        },
+        {
+          "location": 3,
+          "buyingPrice": 6000,
+          "baseUpgradePrice": 5000,
+          "sellingPrice": 6000,
+          "baseRentPrice": 6000
+        }
+      ]
+    },
+    {
+      "color": "BLUE",
+      "lots": [
+        {
+          "location": 6,
+          "buyingPrice": 10000,
+          "baseUpgradePrice": 5000,
+          "sellingPrice": 10000,
+          "baseRentPrice": 1000
+        },
+        {
+          "location": 8,
+          "buyingPrice": 10000,
+          "baseUpgradePrice": 5000,
+          "sellingPrice": 10000,
+          "baseRentPrice": 1000
+        },
+        {
+          "location": 9,
+          "buyingPrice": 12000,
+          "baseUpgradePrice": 5000,
+          "sellingPrice": 12000,
+          "baseRentPrice": 1200
+        }
+      ]
+    },
+    {
+      "color": "MAGENTA",
+      "lots": [
+        {
+          "location": 11,
+          "buyingPrice": 14000,
+          "baseUpgradePrice": 10000,
+          "sellingPrice": 14000,
+          "baseRentPrice": 1400
+        },
+        {
+          "location": 13,
+          "buyingPrice": 14000,
+          "baseUpgradePrice": 10000,
+          "sellingPrice": 14000,
+          "baseRentPrice": 1400
+        },
+        {
+          "location": 14,
+          "buyingPrice": 16000,
+          "baseUpgradePrice": 10000,
+          "sellingPrice": 16000,
+          "baseRentPrice": 1600
+        }
+      ]
+    },
+    {
+      "color": "ORANGE",
+      "lots": [
+        {
+          "location": 16,
+          "buyingPrice": 18000,
+          "baseUpgradePrice": 10000,
+          "sellingPrice": 18000,
+          "baseRentPrice": 1800
+        },
+        {
+          "location": 18,
+          "buyingPrice": 18000,
+          "baseUpgradePrice": 10000,
+          "sellingPrice": 18000,
+          "baseRentPrice": 1800
+        },
+        {
+          "location": 19,
+          "buyingPrice": 20000,
+          "baseUpgradePrice": 10000,
+          "sellingPrice": 20000,
+          "baseRentPrice": 2000
+        }
+      ]
+    },
+    {
+      "color": "CYAN",
+      "lots": [
+        {
+          "location": 21,
+          "buyingPrice": 22000,
+          "baseUpgradePrice": 15000,
+          "sellingPrice": 22000,
+          "baseRentPrice": 2200
+        },
+        {
+          "location": 23,
+          "buyingPrice": 22000,
+          "baseUpgradePrice": 15000,
+          "sellingPrice": 22000,
+          "baseRentPrice": 2200
+        },
+        {
+          "location": 24,
+          "buyingPrice": 24000,
+          "baseUpgradePrice": 15000,
+          "sellingPrice": 24000,
+          "baseRentPrice": 2400
+        }
+      ]
+    },
+    {
+      "color": "YELLOW",
+      "lots": [
+        {
+          "location": 26,
+          "buyingPrice": 26000,
+          "baseUpgradePrice": 15000,
+          "sellingPrice": 26000,
+          "baseRentPrice": 2600
+        },
+        {
+          "location": 27,
+          "buyingPrice": 26000,
+          "baseUpgradePrice": 15000,
+          "sellingPrice": 26000,
+          "baseRentPrice": 2600
+        },
+        {
+          "location": 29,
+          "buyingPrice": 28000,
+          "baseUpgradePrice": 15000,
+          "sellingPrice": 28000,
+          "baseRentPrice": 2600
+        }
+      ]
+    },
+    {
+      "color": "GREEN",
+      "lots": [
+        {
+          "location": 31,
+          "buyingPrice": 30000,
+          "baseUpgradePrice": 20000,
+          "sellingPrice": 30000,
+          "baseRentPrice": 3000
+        },
+        {
+          "location": 32,
+          "buyingPrice": 30000,
+          "baseUpgradePrice": 20000,
+          "sellingPrice": 30000,
+          "baseRentPrice": 3000
+        },
+        {
+          "location": 34,
+          "buyingPrice": 32000,
+          "baseUpgradePrice": 20000,
+          "sellingPrice": 32000,
+          "baseRentPrice": 3000
+        }
+      ]
+    },
+    {
+      "color": "GRAY",
+      "lots": [
+        {
+          "location": 38,
+          "buyingPrice": 35000,
+          "baseUpgradePrice": 20000,
+          "sellingPrice": 35000,
+          "baseRentPrice": 3500
+        },
+        {
+          "location": 39,
+          "buyingPrice": 40000,
+          "baseUpgradePrice": 20000,
+          "sellingPrice": 40000,
+          "baseRentPrice": 4000
+        }
+      ]
+    }
   ]
 }
